@@ -111,10 +111,19 @@ function startQuiz() {
     document.getElementById("extraActions").style.display = "block";
 
     const topSign = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
-    const resultDiv = document.getElementById("result");
-    resultDiv.style.display = "block";
-    resultDiv.innerText = `Your dominant astrological sign is: ${topSign}`;
-    document.getElementById("resultActions").style.display = "flex";
+resultDiv.style.display = "block";
+resultDiv.innerText = `Your dominant astrological sign is: ${topSign}`;
+
+// 🔮 Add poetic verdict here
+const verdictText = verdictsHR[topSign]; // or verdicts[topSign] for English
+const verdictDiv = document.createElement("div");
+verdictDiv.className = "verdict";
+verdictDiv.innerText = verdictText;
+resultDiv.appendChild(verdictDiv);
+
+// ✅ Continue with result actions
+document.getElementById("resultActions").style.display = "flex";
+
   }
 
   document.getElementById("whatsappShareBtn").onclick = () => {
