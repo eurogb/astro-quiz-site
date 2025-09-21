@@ -36,3 +36,20 @@ const questionFile = `/${lang}/quiz15question/questions.js`;
 const script = document.createElement('script');
 script.src = questionFile;
 document.head.appendChild(script);
+
+document.addEventListener("DOMContentLoaded", () => {
+  const lang = window.location.pathname.includes('/hr/') ? 'hr' : 'english';
+  const questionFile = `/${lang}/quiz15question/questions.js`;
+
+  const script = document.createElement('script');
+  script.src = questionFile;
+  script.onload = () => {
+    if (typeof allQuizSets !== 'undefined') {
+      startQuiz(); // ✅ Start only after questions are loaded
+    } else {
+      console.error("Quiz data not found.");
+    }
+  };
+  document.head.appendChild(script);
+});
+
