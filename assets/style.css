@@ -217,6 +217,12 @@
 .main-nav a:hover {
   color: #ffd700;
 }
+.verdict {
+  margin-top: 20px;
+  font-style: italic;
+  font-size: 1.1em;
+  color: #444;
+}
 
 
 </style>
