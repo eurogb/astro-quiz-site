@@ -21,12 +21,13 @@
       <a href="/english/yourpartner/" id="partnerBtn" class="action-btn">💘 Your Ideal Partner</a>
     </div>
   </div>
+<script>
 function startQuiz() {
   // 🔁 Shuffle utility
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[i], array[j]];
+      [array[i], array[j]] = [array[j], array[i]];
     }
   }
 
@@ -71,7 +72,7 @@ function startQuiz() {
     }
 
     const q = questions[currentQuestionIndex];
-    document.getElementById("themeTitle").innerText = `Tema: ${theme.toUpperCase()}`;
+    document.getElementById("themeTitle").innerText = `Theme: ${theme.toUpperCase()}`;
     document.getElementById("question").innerText = q.question;
     const answersDiv = document.getElementById("answers");
     answersDiv.innerHTML = "";
@@ -97,14 +98,14 @@ function startQuiz() {
     const topSign = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
     const resultDiv = document.getElementById("result");
     resultDiv.style.display = "block";
-    resultDiv.innerText = `Tvoj dominantni astrološki znak je: ${topSign}`;
+    resultDiv.innerText = `Your dominant astrological sign is: ${topSign}`;
     document.getElementById("resultActions").style.display = "flex";
   }
 
   document.getElementById("whatsappShareBtn").onclick = () => {
     const topSign = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
-    const message = `Moj dominantni astrološki znak je: ${topSign}! Saznaj svoj znak na našem kvizu 🔮`;
-    const url = "https://www.lfbuyer.com/hr/zodiac/";
+    const message = `My dominant astrological sign is: ${topSign}! Find yours in our quiz 🔮`;
+    const url = "https://www.lfbuyer.com/english/zodiac/";
     const whatsappLink = `https://wa.me/?text=${encodeURIComponent(message + " " + url)}`;
     window.open(whatsappLink, "_blank");
   };
@@ -124,6 +125,7 @@ function startQuiz() {
   initializeQuiz();
   showQuestion();
 }
+</script>
 
   <script src="questions.js"></script> <!-- loads /english/quiz15question/questions.js -->
 <script src="/assets/script.js" defer></script>
