@@ -242,6 +242,16 @@
   z-index: 1000;
   border-bottom-left-radius: 8px;
 }
+.verdict {
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.change-note {
+  margin-top: 10px;
+  color: #c00;
+  font-weight: bold;
+}
 
 
 
