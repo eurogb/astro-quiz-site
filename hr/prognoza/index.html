@@ -1,1 +1,92 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dnevni horoskop</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+  <header>
+    <h1>🌟 Tvoj dnevni horoskop</h1>
+    <p>Odaberi svoj znak i saznaj što ti zvijezde poručuju.</p>
+  </header>
 
+  <div id="ezoic-pub-ad-placeholder-101"></div>
+
+  <main>
+    <label for="zodiac">Odaberi znak:</label>
+    <select id="zodiac">
+      <option value="">--Odaberi--</option>
+      <option value="aries">Ovan</option>
+      <option value="taurus">Bik</option>
+      <option value="gemini">Blizanci</option>
+      <option value="cancer">Rak</option>
+      <option value="leo">Lav</option>
+      <option value="virgo">Djevica</option>
+      <option value="libra">Vaga</option>
+      <option value="scorpio">Škorpion</option>
+      <option value="sagittarius">Strijelac</option>
+      <option value="capricorn">Jarac</option>
+      <option value="aquarius">Vodenjak</option>
+      <option value="pisces">Ribe</option>
+    </select>
+    <button id="see-forecast">Vidi prognozu</button>
+
+    <div id="ezoic-pub-ad-placeholder-102"></div>
+
+    <div id="loading" style="display:none;">🔮 Čitam zvijezde…</div>
+
+    <div id="forecast" style="display:none;">
+      <h2 id="theme"></h2>
+      <p id="forecast-text"></p>
+
+      <button id="check-again">🔁 Odaberi drugi znak</button>
+      <button onclick="location.href='/hr/astro-kviz-15-pitanja/'">🧠 Astro kviz – 15 pitanja</button>
+      <button onclick="location.href='/hr/tvojpartner/'">💘 Tvoj idealan partner</button>
+
+      <div style="margin-top: 20px;">
+        <button onclick="shareWhatsApp()">📲 Podijeli na WhatsApp</button>
+      </div>
+    </div>
+  </main>
+
+  <div id="ezoic-pub-ad-placeholder-103"></div>
+
+  <script src="horoskop.js"></script>
+  <script>
+    const today = new Date().toISOString().split("T")[0];
+    const zodiacSelect = document.getElementById("zodiac");
+    const seeBtn = document.getElementById("see-forecast");
+    const forecastDiv = document.getElementById("forecast");
+    const themeEl = document.getElementById("theme");
+    const textEl = document.getElementById("forecast-text");
+    const loadingEl = document.getElementById("loading");
+
+    seeBtn.onclick = () => {
+      const sign = zodiacSelect.value;
+      if (!sign || !horoscopes[today]) return alert("Molimo odaberite znak.");
+      loadingEl.style.display = "block";
+      setTimeout(() => {
+        loadingEl.style.display = "none";
+        forecastDiv.style.display = "block";
+        themeEl.innerText = `🌌 Tema: ${horoscopes[today].theme}`;
+        textEl.innerText = horoscopes[today][sign];
+      }, 800);
+    };
+
+    document.getElementById("check-again").onclick = () => {
+      forecastDiv.style.display = "none";
+      zodiacSelect.value = "";
+    };
+
+    function shareWhatsApp() {
+      const sign = zodiacSelect.value;
+      if (!sign || !horoscopes[today]) return;
+      const message = `🌟 Moj dnevni horoskop za ${sign}: ${horoscopes[today][sign]} — Tema: ${horoscopes[today].theme}`;
+      const url = "https://www.lfbuyer.com/hr/prognoza/";
+      window.open(`https://wa.me/?text=${encodeURIComponent(message + " " + url)}`, "_blank");
+    }
+  </script>
+</body>
+</html>
