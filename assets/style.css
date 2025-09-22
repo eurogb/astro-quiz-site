@@ -233,6 +233,16 @@
 #languageSwitch a:hover {
   background: #eee;
 }
+#languageSwitch {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: white;
+  padding: 10px;
+  z-index: 1000;
+  border-bottom-left-radius: 8px;
+}
+
 
 
 </style>
