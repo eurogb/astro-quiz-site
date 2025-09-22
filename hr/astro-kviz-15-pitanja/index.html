@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Astro Kviz-15 pitanja</title>
+  <title>Astro Kviz – 15 pitanja</title>
   <link rel="stylesheet" href="/assets/style.css" />
 </head>
 <body>
@@ -21,128 +21,127 @@
       <a href="/hr/tvojpartner/" id="partnerBtn" class="action-btn">💘 Tvoj idealan partner</a>
     </div>
   </div>
-const verdictsHR = {
-  Ovan: "Tvoj znak je iskra koja pali vatru. Ne čeka, ne sumnja—djeluje. U tebi gori snaga početka, hrabrosti i neustrašivosti. Zvijezde te ne vode, ti ih izazivaš.",
-  Bik: "U tvom znaku svijet pronalazi mir. Stabilnost, senzualnost i tiha snaga čine tvoju dušu vrtom u kojem sve cvjeta. Zvijezde te ne mijenjaju—one te poštuju.",
-  Blizanci: "Tvoj znak je vjetar koji nosi riječi, ideje i osmijehe. U tebi žive dvije strane, obje znatiželjne, brze i nepredvidive. Zvijezde ti šapuću, ti im odgovaraš pitanjem.",
-  Rak: "Tvoj znak je srce koje pamti. Osjećaji, intuicija i nježnost tvoje su oružje. U tebi je dom, i za druge, i za zvijezde koje te prate tiho i vjerno.",
-  Lav: "Tvoj znak je sunce koje ne skriva sjaj. Karizma, strast i ponos tvoji su saveznici. Zvijezde te ne otkrivaju—one ti plješću dok koračaš vlastitim putem.",
-  Djevica: "Tvoj znak je red u kaosu. Analiza, preciznost i tiha snaga čine tvoju prisutnost neupitnom. Zvijezde te ne vode—ti im pokazuješ kako se to radi.",
-  Vaga: "Tvoj znak je ravnoteža u svijetu koji se ljulja. Ljepota, diplomacija i harmonija tvoje su boje. Zvijezde te ne biraju—one te zrcale.",
-  Škorpion: "Tvoj znak je dubina koju drugi ne vide. Strast, transformacija i tajna snaga čine tvoju dušu neprobojnom. Zvijezde te ne tumače—one te osjećaju.",
-  Strijelac: "Tvoj znak je put koji nikad ne prestaje. Sloboda, filozofija i vječna potraga za istinom tvoji su vodiči. Zvijezde te ne prate—ti ih nadmašuješ.",
-  Jarac: "Tvoj znak je planina koju drugi tek počinju penjati. Ambicija, disciplina i tiha odlučnost tvoje su temelje. Zvijezde te ne guraju—ti ih nadmašuješ korakom po korak.",
-  Vodenjak: "Tvoj znak je ideja prije vremena. Originalnost, vizija i bunt čine tvoju orbitu jedinstvenom. Zvijezde te ne razumiju—ti ih inspiriraš.",
-  Ribe: "Tvoj znak je san koji pluta između svjetova. Empatija, mašta i duhovnost tvoje su vode. Zvijezde te ne vode—ti ih pretvaraš u poeziju."
-};
-
-  
-function startQuiz() {
-  // 🔁 Shuffle utility
-  function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[i], array[j]];
-    }
-  }
-
-  let quizData;
-  let themeKeys;
-  let currentThemeIndex = 0;
-  let currentQuestionIndex = 0;
-  let scores = {};
-
-  function initializeQuiz() {
-    const setKeys = Object.keys(allQuizSets);
-    const selectedSetKey = setKeys[Math.floor(Math.random() * setKeys.length)];
-    quizData = allQuizSets[selectedSetKey];
-
-    themeKeys = Object.keys(quizData);
-    shuffleArray(themeKeys);
-
-    themeKeys.forEach(theme => {
-      shuffleArray(quizData[theme]);
-      quizData[theme].forEach(q => shuffleArray(q.answers));
-    });
-
-    currentThemeIndex = 0;
-    currentQuestionIndex = 0;
-    scores = {};
-  }
-
-  function showQuestion() {
-    if (currentThemeIndex >= themeKeys.length) {
-      showResult();
-      return;
-    }
-
-    const theme = themeKeys[currentThemeIndex];
-    const questions = quizData[theme];
-
-    if (currentQuestionIndex >= questions.length) {
-      currentThemeIndex++;
-      currentQuestionIndex = 0;
-      showQuestion();
-      return;
-    }
-
-    const q = questions[currentQuestionIndex];
-    document.getElementById("themeTitle").innerText = `Tema: ${theme.toUpperCase()}`;
-    document.getElementById("question").innerText = q.question;
-    const answersDiv = document.getElementById("answers");
-    answersDiv.innerHTML = "";
-
-    q.answers.forEach(a => {
-      const btn = document.createElement("button");
-      btn.innerText = a.text;
-      btn.onclick = () => {
-        scores[a.sign] = (scores[a.sign] || 0) + 1;
-        currentQuestionIndex++;
-        showQuestion();
-      };
-      answersDiv.appendChild(btn);
-    });
-  }
-
-  function showResult() {
-    document.getElementById("themeTitle").style.display = "none";
-    document.getElementById("question").style.display = "none";
-    document.getElementById("answers").style.display = "none";
-    document.getElementById("extraActions").style.display = "block";
-
-    const topSign = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
-    const resultDiv = document.getElementById("result");
-    resultDiv.style.display = "block";
-    resultDiv.innerText = `Tvoj dominantni astrološki znak je: ${topSign}`;
-    document.getElementById("resultActions").style.display = "flex";
-  }
-
-  document.getElementById("whatsappShareBtn").onclick = () => {
-    const topSign = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
-    const message = `Moj dominantni astrološki znak je: ${topSign}! Saznaj svoj znak na našem kvizu 🔮`;
-    const url = "https://www.lfbuyer.com/hr/zodiac/";
-    const whatsappLink = `https://wa.me/?text=${encodeURIComponent(message + " " + url)}`;
-    window.open(whatsappLink, "_blank");
-  };
-
-  document.getElementById("restartBtn").onclick = () => {
-    initializeQuiz();
-    document.getElementById("result").style.display = "none";
-    document.getElementById("resultActions").style.display = "none";
-    document.getElementById("themeTitle").style.display = "block";
-    document.getElementById("question").style.display = "block";
-    document.getElementById("answers").style.display = "block";
-    document.getElementById("extraActions").style.display = "none";
-
-    showQuestion();
-  };
-
-  initializeQuiz();
-  showQuestion();
-}
 
   <script src="questions.js"></script> <!-- loads /hr/kviz15pitanja/questions.js -->
-<script src="/assets/script.js" defer></script>
+
+  <script>
+  const verdictsHR = {
+    Ovan: "Tvoj znak je iskra koja pali vatru. Ne čeka, ne sumnja—djeluje. U tebi gori snaga početka, hrabrosti i neustrašivosti. Zvijezde te ne vode, ti ih izazivaš.",
+    Bik: "U tvom znaku svijet pronalazi mir. Stabilnost, senzualnost i tiha snaga čine tvoju dušu vrtom u kojem sve cvjeta. Zvijezde te ne mijenjaju—one te poštuju.",
+    Blizanci: "Tvoj znak je vjetar koji nosi riječi, ideje i osmijehe. U tebi žive dvije strane, obje znatiželjne, brze i nepredvidive. Zvijezde ti šapuću, ti im odgovaraš pitanjem.",
+    Rak: "Tvoj znak je srce koje pamti. Osjećaji, intuicija i nježnost tvoje su oružje. U tebi je dom, i za druge, i za zvijezde koje te prate tiho i vjerno.",
+    Lav: "Tvoj znak je sunce koje ne skriva sjaj. Karizma, strast i ponos tvoji su saveznici. Zvijezde te ne otkrivaju—one ti plješću dok koračaš vlastitim putem.",
+    Djevica: "Tvoj znak je red u kaosu. Analiza, preciznost i tiha snaga čine tvoju prisutnost neupitnom. Zvijezde te ne vode—ti im pokazuješ kako se to radi.",
+    Vaga: "Tvoj znak je ravnoteža u svijetu koji se ljulja. Ljepota, diplomacija i harmonija tvoje su boje. Zvijezde te ne biraju—one te zrcale.",
+    Škorpion: "Tvoj znak je dubina koju drugi ne vide. Strast, transformacija i tajna snaga čine tvoju dušu neprobojnom. Zvijezde te ne tumače—one te osjećaju.",
+    Strijelac: "Tvoj znak je put koji nikad ne prestaje. Sloboda, filozofija i vječna potraga za istinom tvoji su vodiči. Zvijezde te ne prate—ti ih nadmašuješ.",
+    Jarac: "Tvoj znak je planina koju drugi tek počinju penjati. Ambicija, disciplina i tiha odlučnost tvoje su temelje. Zvijezde te ne guraju—ti ih nadmašuješ korakom po korak.",
+    Vodenjak: "Tvoj znak je ideja prije vremena. Originalnost, vizija i bunt čine tvoju orbitu jedinstvenom. Zvijezde te ne razumiju—ti ih inspiriraš.",
+    Ribe: "Tvoj znak je san koji pluta između svjetova. Empatija, mašta i duhovnost tvoje su vode. Zvijezde te ne vode—ti ih pretvaraš u poeziju."
+  };
+
+  function startQuiz() {
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    let quizData;
+    let themeKeys;
+    let currentThemeIndex = 0;
+    let currentQuestionIndex = 0;
+    let scores = {};
+
+    function initializeQuiz() {
+      const setKeys = Object.keys(allQuizSets);
+      const selectedSetKey = setKeys[Math.floor(Math.random() * setKeys.length)];
+      quizData = allQuizSets[selectedSetKey];
+
+      themeKeys = Object.keys(quizData);
+      shuffleArray(themeKeys);
+
+      themeKeys.forEach(theme => {
+        shuffleArray(quizData[theme]);
+        quizData[theme].forEach(q => shuffleArray(q.answers));
+      });
+
+      currentThemeIndex = 0;
+      currentQuestionIndex = 0;
+      scores = {};
+    }
+
+    function showQuestion() {
+      if (currentThemeIndex >= themeKeys.length) {
+        showResult();
+        return;
+      }
+
+      const theme = themeKeys[currentThemeIndex];
+      const questions = quizData[theme];
+
+      if (currentQuestionIndex >= questions.length) {
+        currentThemeIndex++;
+        currentQuestionIndex = 0;
+        showQuestion();
+        return;
+      }
+
+      const q = questions[currentQuestionIndex];
+      document.getElementById("themeTitle").innerText = `Tema: ${theme.toUpperCase()}`;
+      document.getElementById("question").innerText = q.question;
+      const answersDiv = document.getElementById("answers");
+      answersDiv.innerHTML = "";
+
+      q.answers.forEach(a => {
+        const btn = document.createElement("button");
+        btn.innerText = a.text;
+        btn.onclick = () => {
+          scores[a.sign] = (scores[a.sign] || 0) + 1;
+          currentQuestionIndex++;
+          showQuestion();
+        };
+        answersDiv.appendChild(btn);
+      });
+    }
+
+    function showResult() {
+      document.getElementById("themeTitle").style.display = "none";
+      document.getElementById("question").style.display = "none";
+      document.getElementById("answers").style.display = "none";
+
+      const topSign = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+      const resultDiv = document.getElementById("result");
+      resultDiv.style.display = "block";
+      resultDiv.innerText = `Tvoj dominantni astrološki znak je: ${topSign}`;
+
+      // ✨ Add poetic verdict
+      const verdictText = verdictsHR[topSign];
+      const verdictDiv = document.createElement("div");
+      verdictDiv.className = "verdict";
+      verdictDiv.innerText = verdictText;
+      resultDiv.appendChild(verdictDiv);
+
+      document.getElementById("resultActions").style.display = "flex";
+    }
+
+    document.getElementById("restartBtn").onclick = () => {
+      initializeQuiz();
+      document.getElementById("result").style.display = "none";
+      document.getElementById("resultActions").style.display = "none";
+      document.getElementById("themeTitle").style.display = "block";
+      document.getElementById("question").style.display = "block";
+      document.getElementById("answers").style.display = "block";
+      showQuestion();
+    };
+
+    initializeQuiz();
+    showQuestion();
+  }
+
+  startQuiz();
+  </script>
 
 </body>
 </html>
