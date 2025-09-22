@@ -8,11 +8,10 @@
 </head>
 <body>
 
-  <!-- 🌐 Jezični preklopnik -->
   <header style="display: flex; justify-content: flex-end; padding: 10px;">
     <div id="languageSwitch">
-      <a href="/hr/index.html" style="margin-right: 10px; text-decoration: none;">🇭🇷</a>
-      <a href="/en/index.html" style="text-decoration: none;">🇬🇧</a>
+      <a href="/hr/index.html" style="margin-right: 10px;">🇭🇷</a>
+      <a href="/en/index.html">🇬🇧</a>
     </div>
   </header>
 
@@ -37,148 +36,22 @@
     </div>
   </div>
 
-  <script src="questions.js"></script>
-  <script>
-    const verdictsHR = {
-      Ovan: "Tvoj idealan partner je netko tko te prati u tvojoj strasti i ne boji se izazova.",
-      Bik: "Tražiš nekoga tko donosi mir, dodir i stabilnost u tvoju svakodnevicu.",
-      Blizanci: "Tvoj partner mora biti duhovit, znatiželjan i spreman na nepredvidive avanture.",
-      Rak: "Tvoja duša traži nježnost, dom i emocionalnu povezanost.",
-      Lav: "Privlači te osoba koja sjaji, zna što želi i ne boji se pokazati ljubav.",
-      Djevica: "Cijeniš partnera koji je pažljiv, organiziran i zna slušati između redova.",
-      Vaga: "Tvoj idealan partner je elegantan, šarmantan i zna stvoriti ravnotežu.",
-      Škorpion: "Tražiš dubinu, strast i nekoga tko razumije tvoje tihe snage.",
-      Strijelac: "Tvoj partner mora biti slobodan duh, spreman na filozofske rasprave i putovanja.",
-      Jarac: "Cijeniš ambiciju, pouzdanost i nekoga tko gradi zajedno s tobom.",
-      Vodenjak: "Privlači te originalnost, vizija i netko tko razmišlja izvan okvira.",
-      Ribe: "Tvoj idealan partner je sanjar, nježan i sposoban voljeti bez granica."
-    };
+  <script type="module">
+    import { startQuiz } from "/assets/quiz-engine.js";
+    import { verdictsHR } from "./verdicts.js";
+    import { firstSet } from "./questions.js";
 
-    let allQuestions = [];
-    let selectedQuestions = [];
-    let currentQuestionIndex = 0;
-    let scores = {};
-    let previousTopSign = null;
-
-    function shuffleArray(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+    startQuiz({
+      questionSet: firstSet,
+      verdicts: verdictsHR,
+      ui: {
+        progressLabel: "Pitanje",
+        resultLabel: "Tvoj astrološki idealan partner je:",
+        changeLabel: "⚡ Promjena! Prije si dobio/la:",
+        shareMessage: "Moj astrološki idealan partner je:",
+        shareSuffix: "Saznaj svoj znak na našem kvizu 💘 https://www.lfbuyer.com/hr/tvojpartner/"
       }
-    }
-
-    function initializeQuiz() {
-      allQuestions = [];
-      Object.values(firstSet).forEach(theme => {
-        allQuestions.push(...theme);
-      });
-
-      shuffleArray(allQuestions);
-      selectedQuestions = allQuestions.slice(0, 10);
-      currentQuestionIndex = 0;
-      scores = {};
-      updateProgressBar();
-    }
-
-    function updateProgressBar() {
-      const progress = document.getElementById("progressBar");
-      progress.innerText = `Pitanje ${currentQuestionIndex + 1} / 10`;
-    }
-
-    function fadeOutIn(element, callback) {
-      element.style.opacity = 0;
-      setTimeout(() => {
-        callback();
-        element.style.opacity = 1;
-      }, 300);
-    }
-
-    function showQuestion() {
-      if (currentQuestionIndex >= selectedQuestions.length) {
-        showResult();
-        return;
-      }
-
-      const q = selectedQuestions[currentQuestionIndex];
-      const questionDiv = document.getElementById("question");
-      const answersDiv = document.getElementById("answers");
-
-      fadeOutIn(questionDiv, () => {
-        questionDiv.innerText = `${currentQuestionIndex + 1}. ${q.question}`;
-      });
-
-      answersDiv.innerHTML = "";
-      q.answers.forEach(a => {
-        const btn = document.createElement("button");
-        btn.innerText = a.text;
-        btn.onclick = () => {
-          scores[a.sign] = (scores[a.sign] || 0) + 1;
-          currentQuestionIndex++;
-          updateProgressBar();
-          showQuestion();
-        };
-        answersDiv.appendChild(btn);
-      });
-
-      if (currentQuestionIndex % 5 === 0 && currentQuestionIndex !== 0) {
-        const adDiv = document.createElement("div");
-        adDiv.id = "ezoic-pub-ad-placeholder-103";
-        answersDiv.appendChild(adDiv);
-      }
-    }
-
-    function showResult() {
-      document.getElementById("themeTitle").style.display = "none";
-      document.getElementById("question").style.display = "none";
-      document.getElementById("answers").style.display = "none";
-
-      const topSign = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
-      const resultDiv = document.getElementById("result");
-      resultDiv.style.display = "block";
-      resultDiv.innerText = `Tvoj astrološki idealan partner je: ${topSign}`;
-
-      const verdictText = verdictsHR[topSign];
-      const verdictDiv = document.createElement("div");
-      verdictDiv.className = "verdict";
-      verdictDiv.innerText = verdictText;
-      resultDiv.appendChild(verdictDiv);
-
-      if (previousTopSign && previousTopSign !== topSign) {
-        const changeDiv = document.createElement("div");
-        changeDiv.className = "change-note";
-        changeDiv.innerText = `⚡ Promjena! Prije si dobio/la: ${previousTopSign}`;
-        resultDiv.appendChild(changeDiv);
-      }
-
-      previousTopSign = topSign;
-
-      const adDiv = document.createElement("div");
-      adDiv.id = "ezoic-pub-ad-placeholder-104";
-      resultDiv.appendChild(adDiv);
-
-      document.getElementById("resultActions").style.display = "flex";
-    }
-
-    document.getElementById("restartBtn").onclick = () => {
-      initializeQuiz();
-      document.getElementById("result").style.display = "none";
-      document.getElementById("resultActions").style.display = "none";
-      document.getElementById("themeTitle").style.display = "block";
-      document.getElementById("question").style.display = "block";
-      document.getElementById("answers").style.display = "block";
-      showQuestion();
-    };
-
-    document.getElementById("whatsappShareBtn").onclick = () => {
-      const topSign = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
-      const message = `Moj astrološki idealan partner je: ${topSign}! Saznaj svoj znak na našem kvizu 💘`;
-      const url = "https://www.lfbuyer.com/hr/tvojpartner/";
-      const whatsappLink = `https://wa.me/?text=${encodeURIComponent(message + " " + url)}`;
-      window.open(whatsappLink, "_blank");
-    };
-
-    initializeQuiz();
-    showQuestion();
+    });
   </script>
 
   <div id="ezoic-pub-ad-placeholder-105" style="position:fixed; bottom:0; width:100%; background:#fff; z-index:999;"></div>
