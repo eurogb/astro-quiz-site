@@ -3,156 +3,172 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>15-Questions Astro Quiz</title>
+  <title>Astro Quiz – 15 Questions</title>
   <link rel="stylesheet" href="/assets/style.css" />
 </head>
 <body>
 
+  <!-- 🌐 Language Switch -->
+  <header style="display: flex; justify-content: flex-end; padding: 10px;">
+    <div id="languageSwitch">
+      <a href="/hr/index.html" style="margin-right: 10px; text-decoration: none;">🇭🇷</a>
+      <a href="/en/index.html" style="text-decoration: none;">🇬🇧</a>
+    </div>
+  </header>
+
   <div id="quiz">
     <h2>🔮 Your Astrological Profile</h2>
+
     <div id="themeTitle"></div>
+    <div id="ezoic-pub-ad-placeholder-101"></div> <!-- Ad after theme title -->
+
     <div id="question"></div>
+    <div id="ezoic-pub-ad-placeholder-102"></div> <!-- Ad between question and answers -->
+
     <div id="answers"></div>
 
     <div id="result" style="display:none;"></div>
 
     <div class="button-row" style="display:none;" id="resultActions">
-      <button id="restartBtn">🔄 Retake Quiz</button>
-      <a href="/english/yourpartner/" id="partnerBtn" class="action-btn">💘 Your Ideal Partner</a>
+      <button id="restartBtn">🔄 Restart Quiz</button>
+      <a href="/en/yourmatch/" id="partnerBtn" class="action-btn">💘 Your Ideal Match</a>
     </div>
   </div>
-<script>
-const verdicts = {
-  Aries: "You are the spark that ignites the stars. Bold, restless, and fiercely alive—your sign leads with fire and never looks back. Destiny doesn’t wait, and neither do you.",
-  Taurus: "You are the calm in the cosmic storm. Steady, sensual, and grounded—your sign builds beauty from patience. The stars admire your quiet strength.",
-  Gemini: "You are the breeze that carries stories. Curious, witty, and ever-changing—your sign dances between worlds. The stars speak, and you answer with questions.",
-  Cancer: "You are the heartbeat of the zodiac. Gentle, intuitive, and deep—your sign shelters souls and remembers what others forget. The moon follows your rhythm.",
-  Leo: "You are the sun in human form. Radiant, passionate, and proud—your sign doesn’t follow the stars, it commands their spotlight. The universe applauds your presence.",
-  Virgo: "You are the architect of order. Precise, thoughtful, and quietly powerful—your sign sees the details others miss. The stars trust your clarity.",
-  Libra: "You are the balance in the celestial scale. Graceful, diplomatic, and magnetic—your sign turns chaos into harmony. The stars reflect your elegance.",
-  Scorpio: "You are the mystery beneath the surface. Intense, transformative, and fearless—your sign dives where others hesitate. The stars whisper your secrets.",
-  Sagittarius: "You are the arrow that never stops flying. Free, philosophical, and wild—your sign seeks truth beyond borders. The stars chase your curiosity.",
-  Capricorn: "You are the summit others strive to reach. Disciplined, ambitious, and enduring—your sign climbs with purpose. The stars respect your resilience.",
-  Aquarius: "You are the idea before its time. Visionary, rebellious, and electric—your sign rewrites the rules. The stars don’t define you—you redefine them.",
-  Pisces: "You are the dream that drifts between worlds. Empathetic, imaginative, and timeless—your sign feels what others only glimpse. The stars become poetry in your hands."
-};
 
-function startQuiz() {
-  // 🔁 Shuffle utility
-  function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-  }
+  <script src="questions.js"></script>
+  <script>
+    const verdicts = {
+      Aries: "You are the spark that ignites the stars. Bold, restless, and fiercely alive—your sign leads with fire and never looks back. Destiny doesn’t wait, and neither do you.",
+      Taurus: "You are the calm in the cosmic storm. Steady, sensual, and grounded—your sign builds beauty from patience. The stars admire your quiet strength.",
+      Gemini: "You are the breeze that carries stories. Curious, witty, and ever-changing—your sign dances between worlds. The stars speak, and you answer with questions.",
+      Cancer: "You are the heartbeat of the zodiac. Gentle, intuitive, and deep—your sign shelters souls and remembers what others forget. The moon follows your rhythm.",
+      Leo: "You are the sun in human form. Radiant, passionate, and proud—your sign doesn’t follow the stars, it commands their spotlight. The universe applauds your presence.",
+      Virgo: "You are the architect of order. Precise, thoughtful, and quietly powerful—your sign sees the details others miss. The stars trust your clarity.",
+      Libra: "You are the balance in the celestial scale. Graceful, diplomatic, and magnetic—your sign turns chaos into harmony. The stars reflect your elegance.",
+      Scorpio: "You are the mystery beneath the surface. Intense, transformative, and fearless—your sign dives where others hesitate. The stars whisper your secrets.",
+      Sagittarius: "You are the arrow that never stops flying. Free, philosophical, and wild—your sign seeks truth beyond borders. The stars chase your curiosity.",
+      Capricorn: "You are the summit others strive to reach. Disciplined, ambitious, and enduring—your sign climbs with purpose. The stars respect your resilience.",
+      Aquarius: "You are the idea before its time. Visionary, rebellious, and electric—your sign rewrites the rules. The stars don’t define you—you redefine them.",
+      Pisces: "You are the dream that drifts between worlds. Empathetic, imaginative, and timeless—your sign feels what others only glimpse. The stars become poetry in your hands."
+    };
 
-  let quizData;
-  let themeKeys;
-  let currentThemeIndex = 0;
-  let currentQuestionIndex = 0;
-  let scores = {};
+    function startQuiz() {
+      function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+      }
 
-  function initializeQuiz() {
-    const setKeys = Object.keys(allQuizSets);
-    const selectedSetKey = setKeys[Math.floor(Math.random() * setKeys.length)];
-    quizData = allQuizSets[selectedSetKey];
+      let quizData;
+      let themeKeys;
+      let currentThemeIndex = 0;
+      let currentQuestionIndex = 0;
+      let scores = {};
 
-    themeKeys = Object.keys(quizData);
-    shuffleArray(themeKeys);
+      function initializeQuiz() {
+        const setKeys = Object.keys(allQuizSets);
+        const selectedSetKey = setKeys[Math.floor(Math.random() * setKeys.length)];
+        quizData = allQuizSets[selectedSetKey];
 
-    themeKeys.forEach(theme => {
-      shuffleArray(quizData[theme]);
-      quizData[theme].forEach(q => shuffleArray(q.answers));
-    });
+        themeKeys = Object.keys(quizData);
+        shuffleArray(themeKeys);
 
-    currentThemeIndex = 0;
-    currentQuestionIndex = 0;
-    scores = {};
-  }
+        themeKeys.forEach(theme => {
+          shuffleArray(quizData[theme]);
+          quizData[theme].forEach(q => shuffleArray(q.answers));
+        });
 
-  function showQuestion() {
-    if (currentThemeIndex >= themeKeys.length) {
-      showResult();
-      return;
-    }
+        currentThemeIndex = 0;
+        currentQuestionIndex = 0;
+        scores = {};
+      }
 
-    const theme = themeKeys[currentThemeIndex];
-    const questions = quizData[theme];
+      function showQuestion() {
+        if (currentThemeIndex >= themeKeys.length) {
+          showResult();
+          return;
+        }
 
-    if (currentQuestionIndex >= questions.length) {
-      currentThemeIndex++;
-      currentQuestionIndex = 0;
-      showQuestion();
-      return;
-    }
+        const theme = themeKeys[currentThemeIndex];
+        const questions = quizData[theme];
 
-    const q = questions[currentQuestionIndex];
-    document.getElementById("themeTitle").innerText = `Theme: ${theme.toUpperCase()}`;
-    document.getElementById("question").innerText = q.question;
-    const answersDiv = document.getElementById("answers");
-    answersDiv.innerHTML = "";
+        if (currentQuestionIndex >= questions.length) {
+          currentThemeIndex++;
+          currentQuestionIndex = 0;
+          showQuestion();
+          return;
+        }
 
-    q.answers.forEach(a => {
-      const btn = document.createElement("button");
-      btn.innerText = a.text;
-      btn.onclick = () => {
-        scores[a.sign] = (scores[a.sign] || 0) + 1;
-        currentQuestionIndex++;
+        const q = questions[currentQuestionIndex];
+        document.getElementById("themeTitle").innerText = `Theme: ${theme.toUpperCase()}`;
+        document.getElementById("question").innerText = q.question;
+        const answersDiv = document.getElementById("answers");
+        answersDiv.innerHTML = "";
+
+        // Insert ad every 5 questions
+        if (currentQuestionIndex % 5 === 0 && currentQuestionIndex !== 0) {
+          const adDiv = document.createElement("div");
+          adDiv.id = "ezoic-pub-ad-placeholder-103";
+          answersDiv.appendChild(adDiv);
+        }
+
+        q.answers.forEach(a => {
+          const btn = document.createElement("button");
+          btn.innerText = a.text;
+          btn.onclick = () => {
+            scores[a.sign] = (scores[a.sign] || 0) + 1;
+            currentQuestionIndex++;
+            showQuestion();
+          };
+          answersDiv.appendChild(btn);
+        });
+      }
+
+      function showResult() {
+        document.getElementById("themeTitle").style.display = "none";
+        document.getElementById("question").style.display = "none";
+        document.getElementById("answers").style.display = "none";
+
+        const topSign = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+        const resultDiv = document.getElementById("result");
+        resultDiv.style.display = "block";
+        resultDiv.innerText = `Your dominant astrological sign is: ${topSign}`;
+
+        // Poetic verdict
+        const verdictText = verdicts[topSign];
+        const verdictDiv = document.createElement("div");
+        verdictDiv.className = "verdict";
+        verdictDiv.innerText = verdictText;
+        resultDiv.appendChild(verdictDiv);
+
+        // Ad before result actions
+        const adDiv = document.createElement("div");
+        adDiv.id = "ezoic-pub-ad-placeholder-104";
+        resultDiv.appendChild(adDiv);
+
+        document.getElementById("resultActions").style.display = "flex";
+      }
+
+      document.getElementById("restartBtn").onclick = () => {
+        initializeQuiz();
+        document.getElementById("result").style.display = "none";
+        document.getElementById("resultActions").style.display = "none";
+        document.getElementById("themeTitle").style.display = "block";
+        document.getElementById("question").style.display = "block";
+        document.getElementById("answers").style.display = "block";
         showQuestion();
       };
-      answersDiv.appendChild(btn);
-    });
-  }
 
-  function showResult() {
-    document.getElementById("themeTitle").style.display = "none";
-    document.getElementById("question").style.display = "none";
-    document.getElementById("answers").style.display = "none";
-    document.getElementById("extraActions").style.display = "block";
+      initializeQuiz();
+      showQuestion();
+    }
 
-    const topSign = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
-resultDiv.style.display = "block";
-resultDiv.innerText = `Your dominant astrological sign is: ${topSign}`;
+    startQuiz();
+  </script>
 
-// 🔮 Add poetic verdict here
-const verdictText = verdictsHR[topSign]; // or verdicts[topSign] for English
-const verdictDiv = document.createElement("div");
-verdictDiv.className = "verdict";
-verdictDiv.innerText = verdictText;
-resultDiv.appendChild(verdictDiv);
-
-// ✅ Continue with result actions
-document.getElementById("resultActions").style.display = "flex";
-
-  }
-
-  document.getElementById("whatsappShareBtn").onclick = () => {
-    const topSign = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
-    const message = `My dominant astrological sign is: ${topSign}! Find yours in our quiz 🔮`;
-    const url = "https://www.lfbuyer.com/english/zodiac/";
-    const whatsappLink = `https://wa.me/?text=${encodeURIComponent(message + " " + url)}`;
-    window.open(whatsappLink, "_blank");
-  };
-
-  document.getElementById("restartBtn").onclick = () => {
-    initializeQuiz();
-    document.getElementById("result").style.display = "none";
-    document.getElementById("resultActions").style.display = "none";
-    document.getElementById("themeTitle").style.display = "block";
-    document.getElementById("question").style.display = "block";
-    document.getElementById("answers").style.display = "block";
-    document.getElementById("extraActions").style.display = "none";
-
-    showQuestion();
-  };
-
-  initializeQuiz();
-  showQuestion();
-}
-</script>
-
-  <script src="questions.js"></script> <!-- loads /english/quiz15question/questions.js -->
-<script src="/assets/script.js" defer></script>
+  <!-- Optional sticky footer ad -->
+  <div id="ezoic-pub-ad-placeholder-105" style="position:fixed; bottom:0; width:100%; background:#fff; z-index:999;"></div>
 
 </body>
 </html>
