@@ -223,6 +223,16 @@
   font-size: 1.1em;
   color: #444;
 }
+#languageSwitch a {
+  font-size: 1.2em;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+#languageSwitch a:hover {
+  background: #eee;
+}
 
 
 </style>
