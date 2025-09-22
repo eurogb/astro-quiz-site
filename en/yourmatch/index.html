@@ -1,1 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Ideal Match – Astro Quiz</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+
+  <!-- 🌐 Language Switch -->
+  <header style="display: flex; justify-content: flex-end; padding: 10px;">
+    <div id="languageSwitch">
+      <a href="/hr/index.html" style="margin-right: 10px; text-decoration: none;">🇭🇷</a>
+      <a href="/en/index.html" style="text-decoration: none;">🇬🇧</a>
+    </div>
+  </header>
+
+  <div id="quiz">
+    <h2>💘 Your Ideal Match</h2>
+
+    <div id="themeTitle"></div>
+    <div id="progressBar" style="margin: 10px 0; font-weight: bold;"></div>
+
+    <div id="ezoic-pub-ad-placeholder-101"></div>
+
+    <div id="question"></div>
+    <div id="ezoic-pub-ad-placeholder-102"></div>
+
+    <div id="answers"></div>
+
+    <div id="result" style="display:none;"></div>
+
+    <div class="button-row" style="display:none;" id="resultActions">
+      <button id="restartBtn">🔄 Restart Quiz</button>
+      <button id="whatsappShareBtn">📲 Share on WhatsApp</button>
+    </div>
+  </div>
+
+  <script src="questions.js"></script>
+  <script>
+    const verdictsEN = {
+      Aries: "Your ideal match is someone who fuels your fire and embraces bold adventures.",
+      Taurus: "You seek someone who brings calm, touch, and stability to your everyday life.",
+      Gemini: "Your match must be witty, curious, and ready for unpredictable fun.",
+      Cancer: "Your soul craves tenderness, home, and emotional depth.",
+      Leo: "You're drawn to someone who shines, knows what they want, and loves loudly.",
+      Virgo: "You value a partner who is thoughtful, organized, and hears what's unsaid.",
+      Libra: "Your ideal match is elegant, charming, and knows how to create harmony.",
+      Scorpio: "You seek depth, passion, and someone who understands your quiet power.",
+      Sagittarius: "Your match must be a free spirit, ready for philosophical talks and wild journeys.",
+      Capricorn: "You appreciate ambition, reliability, and someone who builds with you.",
+      Aquarius: "You're drawn to originality, vision, and someone who thinks beyond the norm.",
+      Pisces: "Your ideal match is a dreamer, gentle, and capable of loving without limits."
+    };
+
+    let allQuestions = [];
+    let selectedQuestions = [];
+    let currentQuestionIndex = 0;
+    let scores = {};
+    let previousTopSign = null;
+
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    function initializeQuiz() {
+      allQuestions = [];
+      Object.values(firstSet).forEach(theme => {
+        allQuestions.push(...theme);
+      });
+
+      shuffleArray(allQuestions);
+      selectedQuestions = allQuestions.slice(0, 10);
+      currentQuestionIndex = 0;
+      scores = {};
+      updateProgressBar();
+    }
+
+    function updateProgressBar() {
+      const progress = document.getElementById("progressBar");
+      progress.innerText = `Question ${currentQuestionIndex + 1} / 10`;
+    }
+
+    function fadeOutIn(element, callback) {
+      element.style.opacity = 0;
+      setTimeout(() => {
+        callback();
+        element.style.opacity = 1;
+      }, 300);
+    }
+
+    function showQuestion() {
+      if (currentQuestionIndex >= selectedQuestions.length) {
+        showResult();
+        return;
+      }
+
+      const q = selectedQuestions[currentQuestionIndex];
+      const questionDiv = document.getElementById("question");
+      const answersDiv = document.getElementById("answers");
+
+      fadeOutIn(questionDiv, () => {
+        questionDiv.innerText = `${currentQuestionIndex + 1}. ${q.question}`;
+      });
+
+      answersDiv.innerHTML = "";
+      q.answers.forEach(a => {
+        const btn = document.createElement("button");
+        btn.innerText = a.text;
+        btn.onclick = () => {
+          scores[a.sign] = (scores[a.sign] || 0) + 1;
+          currentQuestionIndex++;
+          updateProgressBar();
+          showQuestion();
+        };
+        answersDiv.appendChild(btn);
+      });
+
+      if (currentQuestionIndex % 5 === 0 && currentQuestionIndex !== 0) {
+        const adDiv = document.createElement("div");
+        adDiv.id = "ezoic-pub-ad-placeholder-103";
+        answersDiv.appendChild(adDiv);
+      }
+    }
+
+    function showResult() {
+      document.getElementById("themeTitle").style.display = "none";
+      document.getElementById("question").style.display = "none";
+      document.getElementById("answers").style.display = "none";
+
+      const topSign = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+      const resultDiv = document.getElementById("result");
+      resultDiv.style.display = "block";
+      resultDiv.innerText = `Your ideal astrological match is: ${topSign}`;
+
+      const verdictText = verdictsEN[topSign];
+      const verdictDiv = document.createElement("div");
+      verdictDiv.className = "verdict";
+      verdictDiv.innerText = verdictText;
+      resultDiv.appendChild(verdictDiv);
+
+      if (previousTopSign && previousTopSign !== topSign) {
+        const changeDiv = document.createElement("div");
+        changeDiv.className = "change-note";
+        changeDiv.innerText = `⚡ Change detected! Last time you got: ${previousTopSign}`;
+        resultDiv.appendChild(changeDiv);
+      }
+
+      previousTopSign = topSign;
+
+      const adDiv = document.createElement("div");
+      adDiv.id = "ezoic-pub-ad-placeholder-104";
+      resultDiv.appendChild(adDiv);
+
+      document.getElementById("resultActions").style.display = "flex";
+    }
+
+    document.getElementById("restartBtn").onclick = () => {
+      initializeQuiz();
+      document.getElementById("result").style.display = "none";
+      document.getElementById("resultActions").style.display = "none";
+      document.getElementById("themeTitle").style.display = "block";
+      document.getElementById("question").style.display = "block";
+      document.getElementById("answers").style.display = "block";
+      showQuestion();
+    };
+
+    document.getElementById("whatsappShareBtn").onclick = () => {
+      const topSign = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+      const message = `My ideal astrological match is: ${topSign}! Discover yours in our quiz 💘`;
+      const url = "https://www.lfbuyer.com/en/yourmatch/";
+      const whatsappLink = `https://wa.me/?text=${encodeURIComponent(message + " " + url)}`;
+      window.open(whatsappLink, "_blank");
+    };
+
+    initializeQuiz();
+    showQuestion();
+  </script>
+
+  <div id="ezoic-pub-ad-placeholder-105" style="position:fixed; bottom:0; width:100%; background:#fff; z-index:999;"></div>
+
+</body>
+</html>
 
