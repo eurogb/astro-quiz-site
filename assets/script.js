@@ -17,36 +17,32 @@ fetch(`/astro-quiz-site/assets/header-${lang}.html`)
       });
     }
 
+    // 📲 WhatsApp share button
+    const shareBtn = document.getElementById("whatsappShareBtn");
+    if (shareBtn) {
+      shareBtn.addEventListener("click", () => {
+        const messages = {
+          en: "Check out your astro quiz result! 🌟 https://eurogb.github.io/astro-quiz-site/en/",
+          hr: "Pogledaj svoj astrološki rezultat! 🌟 https://eurogb.github.io/astro-quiz-site/hr/"
+        };
+        const message = encodeURIComponent(messages[lang]);
+        window.open(`https://wa.me/?text=${message}`, '_blank');
+      });
+    }
+  });
+
 // 📦 Inject footer
 fetch(`/astro-quiz-site/assets/footer-${lang}.html`)
   .then(res => res.text())
-  .then(html => document.body.insertAdjacentHTML('beforeend', html));
+  .then(html => {
+    document.body.insertAdjacentHTML('beforeend', html);
+  });
 
 // 📦 Inject extra actions
 fetch(`/astro-quiz-site/assets/extra-actions-${lang}.html`)
   .then(res => res.text())
   .then(html => {
     document.getElementById('quiz')?.insertAdjacentHTML('beforeend', html);
-  });
-
-// 📲 Localized WhatsApp message
-        const messages = {
-          en: "Check out your astro quiz result! 🌟 https://eurogb.github.io/astro-quiz-site/en/",
-          hr: "Pogledaj svoj astrološki rezultat! 🌟 https://eurogb.github.io/astro-quiz-site/hr/"
-        };
-        const message = encodeURIComponent(messages[lang]);
-        window.open(`https://wa.me/?text=${message}`, '_blank');
-      });
-    }
-  });
-        const messages = {
-          en: "Check out your astro quiz result! 🌟 https://eurogb.github.io/astro-quiz-site/en/",
-          hr: "Pogledaj svoj astrološki rezultat! 🌟 https://eurogb.github.io/astro-quiz-site/hr/"
-        };
-        const message = encodeURIComponent(messages[lang]);
-        window.open(`https://wa.me/?text=${message}`, '_blank');
-      });
-    }
   });
 
 // 📥 Load correct question set
