@@ -118,7 +118,7 @@ h2 {
   /* 🛠 Fix header overlap */
   .site-header {
     position: relative;
-    padding-top: 100px; /* increased to make room for flags + menu */
+  
   }
 
   .site-header h1 {
@@ -211,6 +211,18 @@ h2 {
   align-items: center;
   flex-wrap: wrap;
 }
+
+.header-spacer {
+  height: 60px;
+}
+
+@media (max-width: 768px) {
+  .header-spacer {
+    height: 80px; /* taller on mobile to fit flags + menu icon */
+  }
+}
+
+
 
 .site-header h1 {
   font-size: 1.8em;
