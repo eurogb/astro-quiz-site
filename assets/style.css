@@ -387,3 +387,15 @@ h2 {
 .whatsapp-icon:hover {
   color: #1ebe57;
 }
+.site-logo {
+  height: 40px;
+  margin-right: 10px;
+}
+@media (max-width: 768px) {
+  .site-logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+  }
+}
