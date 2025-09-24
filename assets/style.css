@@ -259,10 +259,11 @@ h2 {
   top: 10px;
   left: 10px;
   height: 40px;
+  width: auto;
   z-index: 1000;
   pointer-events: none;
-  animation: glow 2s ease-in-out infinite alternate;
 }
+
 
 @keyframes glow {
   from { filter: drop-shadow(0 0 2px #ffd700); }
@@ -314,7 +315,7 @@ h2 {
   }
 .site-header {
     position: relative;
-    padding-top: 80px; /* space for floating logo + top-controls */
+    padding-top: 10px; /* space for floating logo + top-controls */
   }
 .site-header h1 {
   background: rgba(255, 255, 255, 0.1);
@@ -333,16 +334,15 @@ h2 {
     display: block;
     text-align: cen
   }
-  .site-header h1 {
-    font-size: 1.4em;
-    padding: 0 10px;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 500px;
-    box-sizing: border-box;
-    line-height: 1.3;
-    word-break: keep-all;
-  }
+.site-header h1 {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.6em;
+  padding: 0 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 
  .menu-links {
     display: none;
