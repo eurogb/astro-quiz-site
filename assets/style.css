@@ -282,4 +282,50 @@ h2 {
     padding: 6px 10px;
   }
 }
+.menu-icon {
+  font-size: 1.5em;
+  background: none;
+  border: none;
+  color: #ffd700;
+  cursor: pointer;
+  display: none;
+}
+
+.menu-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.menu-links li a {
+  color: #87cefa;
+  text-decoration: none;
+  font-size: 1.1em;
+  transition: color 0.3s ease;
+}
+
+.menu-links li a:hover {
+  color: #ffd700;
+}
+
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+    margin: 10px auto;
+  }
+
+  .menu-links {
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .menu-links.show {
+    display: flex;
+  }
+}
 
