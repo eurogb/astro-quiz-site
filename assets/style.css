@@ -312,15 +312,41 @@ h2 {
     width: 100%;
     font-size: 1em;
   }
+.site-header {
+    position: relative;
+    padding-top: 80px; /* space for floating logo + top-controls */
+  }
 
+  .top-controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+  }
+
+  .header-top {
+    display: block;
+    text-align: cen
   .site-header h1 {
+    margin: 0 auto;
     font-size: 1.6em;
-    padding: 0 10px;
+    padding: 0 20px;
     width: 100%;
     box-sizing: border-box;
   }
 
-  .menu-links {
-    margin-top: 30px;
+ .menu-links {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .menu-links.show {
+    display: flex;
   }
 }
