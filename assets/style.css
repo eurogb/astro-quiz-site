@@ -315,7 +315,7 @@ h2 {
   }
 .site-header {
     position: relative;
-    padding-top: 10px; /* space for floating logo + top-controls */
+    padding-top: 1em; /* space for floating logo + top-controls */
   }
 .site-header h1 {
   background: rgba(255, 255, 255, 0.1);
