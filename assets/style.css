@@ -129,6 +129,7 @@ h2 {
   justify-content: space-between;
   align-items: center;
   flex-wrap: nowrap;
+  position: relative;
 }
 
 .header-spacer {
@@ -138,16 +139,22 @@ h2 {
 .site-header h1 {
   font-size: 1.8em;
   color: #ffd700;
-  margin: 0;
-  text-shadow: 1px 1px 5px #000;
+  margin: 0 auto;
   text-align: center;
   width: 100%;
+  text-shadow: 1px 1px 5px #000;
 }
 
 .top-controls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
   display: flex;
   gap: 10px;
-  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 10px;
+  border-radius: 8px;
+  z-index: 1000;
 }
 
 .lang-btn {
@@ -203,13 +210,17 @@ h2 {
   margin: 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 15px;
-  margin-top: 10px;
+  margin-top: 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .menu-links.show {
   opacity: 1;
   max-height: 500px;
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .menu-links li a,
@@ -302,58 +313,14 @@ h2 {
     font-size: 1em;
   }
 
- .header-top {
-    display: block;
-    position: relative;
-  }
-
   .site-header h1 {
-    margin: 0 auto;
-    text-align: center;
-    width: 100%;
-    padding: 0 20px;
     font-size: 1.6em;
-    background: rgba(255, 255, 255, 0.1);
-  }
-
-   .top-controls {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    display: flex;
-    gap: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 6px 10px;
-    border-radius: 8px;
-    z-index: 1000;
-  }
-
-  .floating-logo {
-    top: 10px;
-    left: 10px;
-  }
-
-  .menu-icon {
-    display: block;
-    margin: 0;
+    padding: 0 10px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .menu-links {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    margin-top: 20px;
+    margin-top: 30px;
   }
-
-  .menu-links.show {
-    display: flex;
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  .lang-btn {
-    font-size: 1em;
-    padding: 0
-    
-  }  
-    
+}
