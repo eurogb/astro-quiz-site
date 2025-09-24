@@ -319,7 +319,7 @@ h2 {
   }
 
 .site-header h1 {
-  background: rgba(255, 255, 255, 0.1);
+ text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700;
 }
 
   .top-controls {
