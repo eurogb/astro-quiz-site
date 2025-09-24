@@ -115,8 +115,14 @@ h2 {
     font-size: 1em;
   }
 
+  /* 🛠 Fix header overlap */
+  .site-header {
+    position: relative;
+    padding-top: 100px; /* increased to make room for flags + menu */
+  }
+
   .site-header h1 {
-    margin-top: 60px;
+    margin-top: 0;
     text-align: center;
   }
 
@@ -139,7 +145,7 @@ h2 {
 
   .menu-icon {
     display: block;
-    margin: 10px auto;
+    margin: 0;
   }
 
   .menu-links {
@@ -158,6 +164,7 @@ h2 {
     padding: 6px 10px;
   }
 }
+
 
 /* 🧩 Extra Actions */
 #extraActions button {
