@@ -47,11 +47,15 @@ script.onload = () => {
 };
 document.head.appendChild(script);
 document.addEventListener("DOMContentLoaded", () => {
+setTimeout(() => {
   const toggle = document.getElementById("menuToggle");
   const links = document.getElementById("menuLinks");
 
-  toggle?.addEventListener("click", () => {
-    links.classList.toggle("show");
-  });
-});
+  if (toggle && links) {
+    toggle.addEventListener("click", () => {
+      links.classList.toggle("show");
+    });
+  }
+}, 300);
+
 
