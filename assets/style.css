@@ -399,3 +399,93 @@ h2 {
     z-index: 1000;
   }
 }
+/* 🌙 Floating logo */
+.floating-logo {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  height: 40px;
+  z-index: 1000;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+@keyframes glow {
+  from { filter: drop-shadow(0 0 2px #ffd700); }
+  to { filter: drop-shadow(0 0 8px #ffd700); }
+}
+
+/* 🌐 Top controls */
+.top-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .top-controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 6px 10px;
+    border-radius: 8px;
+    z-index: 1000;
+  }
+
+  .site-header h1 {
+    margin-top: 60px;
+    text-align: center;
+  }
+}
+
+/* ☰ Menu icon */
+.menu-icon {
+  font-size: 1.5em;
+  background: none;
+  border: none;
+  color: #ffd700;
+  cursor: pointer;
+}
+
+/* 🎭 Dropdown menu */
+.menu-links {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.4s ease, max-height 0.4s ease;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 10px;
+}
+.menu-links.show {
+  opacity: 1;
+  max-height: 500px;
+}
+.menu-links li a,
+.menu-links li button {
+  color: #87cefa;
+  background: none;
+  border: none;
+  font-size: 1.1em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.menu-links li a:hover,
+.menu-links li button:hover {
+  color: #ffd700;
+}
+
+/* 📲 WhatsApp button */
+.whatsapp-icon {
+  font-size: 1.1em;
+  color: #25D366;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.whatsapp-icon:hover {
+  color: #1ebe57;
+}
