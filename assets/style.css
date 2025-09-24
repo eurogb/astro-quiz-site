@@ -248,4 +248,17 @@ h2 {
   color: #c00;
   font-weight: bold;
 }
+.site-footer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 40px;
+}
+.site-footer a {
+  display: block;
+  margin-top: 5px;
+  color: #0077cc;
+  text-decoration: none;
+}
+
 </style>
