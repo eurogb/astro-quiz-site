@@ -5,7 +5,19 @@ const lang = path.includes('/hr/') ? 'hr' : 'en';
 // 📦 Inject header
 fetch(`/astro-quiz-site/assets/header-${lang}.html`)
   .then(res => res.text())
-  .then(html => document.body.insertAdjacentHTML('afterbegin', html));
+  .then(html => {
+    document.body.insertAdjacentHTML('afterbegin', html);
+
+    // ✅ Now that header is injected, bind menu toggle
+    const toggle = document.getElementById("menuToggle");
+    const links = document.getElementById("menuLinks");
+
+    if (toggle && links) {
+      toggle.addEventListener("click", () => {
+        links.classList.toggle("show");
+      });
+    }
+  });
 
 // 📦 Inject footer
 fetch(`/astro-quiz-site/assets/footer-${lang}.html`)
@@ -31,7 +43,7 @@ document.addEventListener('click', function (e) {
   }
 });
 
-// 📥 Load correct question set for 15-question quiz
+// 📥 Load correct question set
 const questionFile = lang === 'hr'
   ? '/astro-quiz-site/hr/astro-kviz-15-pitanja/questions.js'
   : '/astro-quiz-site/en/quiz-15-Questions/questions.js';
@@ -45,16 +57,4 @@ script.onload = () => {
     console.error("Quiz data not found.");
   }
 };
-document.addEventListener("DOMContentLoaded", () => {
-  const toggle = document.getElementById("menuToggle");
-  const links = document.getElementById("menuLinks");
-
-  if (toggle && links) {
-    toggle.addEventListener("click", () => {
-      links.classList.toggle("show");
-    });
-  }
-});
-
-
-
+document.head.appendChild(script);
