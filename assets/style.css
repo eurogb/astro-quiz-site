@@ -123,6 +123,20 @@ h2 {
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   position: relative;
 }
+.site-header h1 {
+  font-size: 1.8em;
+  color: #ffd700;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  text-shadow: 1px 1px 5px #000;
+  animation: titleGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+  from { text-shadow: 0 0 5px #ffd700; }
+  to { text-shadow: 0 0 15px #ffd700; }
+}
 
 .header-top {
   display: flex;
@@ -321,6 +335,16 @@ h2 {
 .site-header h1 {
  text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700;
 }
+
+  .site-header h1 {
+    animation: titleGlowMobile 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes titleGlowMobile {
+    from { text-shadow: 0 0 3px #ffd700; }
+    to { text-shadow: 0 0 8px #ffd700; }
+  }
+
 
   .top-controls {
     position: absolute;
