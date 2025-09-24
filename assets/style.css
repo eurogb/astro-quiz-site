@@ -313,6 +313,7 @@ h2 {
     width: 100%;
     padding: 0 20px;
     font-size: 1.6em;
+    background: rgba(255, 255, 255, 0.1);
   }
 
    .top-controls {
@@ -347,6 +348,7 @@ h2 {
 
   .menu-links.show {
     display: flex;
+    background: rgba(255, 255, 255, 0.05);
   }
 
   .lang-btn {
