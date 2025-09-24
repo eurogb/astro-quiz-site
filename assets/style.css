@@ -139,10 +139,13 @@ h2 {
 
 .header-top {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  flex-wrap: nowrap;
+  position: relative;
+  flex-direction: column;
   text-align: center;
-}
+  }
 
 
 .header-spacer {
