@@ -376,3 +376,14 @@ h2 {
     text-align: center;
   }
 }
+.whatsapp-icon {
+  font-size: 1.5em;
+  background: none;
+  border: none;
+  color: #25D366;
+  cursor: pointer;
+  padding: 6px 10px;
+}
+.whatsapp-icon:hover {
+  color: #1ebe57;
+}
