@@ -157,6 +157,14 @@ h2 {
   width: 100%;
   text-shadow: 1px 1px 5px #000;
 }
+.subtitle {
+  font-size: 1.2em;
+  color: #87cefa;
+  margin-top: 10px;
+  font-style: italic;
+  text-shadow: 1px 1px 3px #000;
+}
+
 
 .top-controls {
   position: absolute;
