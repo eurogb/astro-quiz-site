@@ -45,10 +45,7 @@ script.onload = () => {
     console.error("Quiz data not found.");
   }
 };
-setTimeout(() => {
-document.head.appendChild(script);
 document.addEventListener("DOMContentLoaded", () => {
-
   const toggle = document.getElementById("menuToggle");
   const links = document.getElementById("menuLinks");
 
@@ -57,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
       links.classList.toggle("show");
     });
   }
-}, 300);
+});
+
 
 
