@@ -302,31 +302,29 @@ h2 {
     font-size: 1em;
   }
 
- 
-  .header-top {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+ .header-top {
+    display: block;
+    position: relative;
   }
 
   .site-header h1 {
-    margin: 0;
+    margin: 0 auto;
     text-align: center;
-    width: auto;
-    max-width: 90%;
-    padding: 0;
-    display: block;
+    width: 100%;
+    padding: 0 20px;
+    font-size: 1.6em;
   }
 
-  .top-controls {
+   .top-controls {
     position: absolute;
     top: 10px;
     right: 10px;
+    display: flex;
+    gap: 10px;
     background: rgba(255, 255, 255, 0.1);
     padding: 6px 10px;
     border-radius: 8px;
     z-index: 1000;
-    margin-bottom: 10px;
   }
 
   .floating-logo {
@@ -342,8 +340,9 @@ h2 {
   .menu-links {
     display: none;
     flex-direction: column;
+    align-items: center;
     gap: 15px;
-    margin-top: 10px;
+    margin-top: 20px;
   }
 
   .menu-links.show {
@@ -352,4 +351,7 @@ h2 {
 
   .lang-btn {
     font-size: 1em;
-    padding: 
+    padding: 0
+    
+  }  
+    
