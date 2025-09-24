@@ -130,7 +130,6 @@ h2 {
   text-align: center;
   width: 100%;
   text-shadow: 1px 1px 5px #000;
-  animation: titleGlow 2s ease-in-out infinite alternate;
 }
 
 @keyframes titleGlow {
