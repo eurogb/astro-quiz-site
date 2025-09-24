@@ -332,7 +332,7 @@ h2 {
   }
 
 .site-header h1 {
-text-shadow: 1px 1px 5px #000; /* optional subtle depth */
+text-shadow: none; /* optional subtle depth */
 
 }
 
