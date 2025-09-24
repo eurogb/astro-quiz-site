@@ -313,7 +313,8 @@ h2 {
     width: 100%;
     font-size: 1em;
   }
- .site-header {
+.site-header {
+    position: relative;
     padding: 20px;
   }
 
