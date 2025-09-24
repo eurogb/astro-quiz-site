@@ -86,96 +86,6 @@ h2 {
   background-color: #ffcc00;
 }
 
-/* 📱 Mobile Adjustments */
-@media (max-width: 768px) {
-  body {
-    padding: 20px;
-  }
-
-  h2 {
-    font-size: 1.6em;
-  }
-
-  #question {
-    font-size: 1.2em;
-  }
-
-  #answers button {
-    font-size: 1em;
-    padding: 10px;
-  }
-
-  #result {
-    font-size: 1.3em;
-    padding: 15px;
-  }
-
-  #restartBtn {
-    width: 100%;
-    font-size: 1em;
-  }
-
-  /* 🛠 Fix header overlap */
-  .site-header {
-    position: relative;
-  
-  }
-
-.site-header h1 {
-  margin: 0 auto;
-  text-align: center;
-  width: 100%;
-  padding: 0 20px;
-}
-.header-top {
-  flex-direction: column;
-  align-items: center;
-}
-.top-controls {
-  margin-bottom: 10px;
-}
-
-
-  .top-controls {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 6px 10px;
-    border-radius: 8px;
-    z-index: 1000;
-  }
-
-  .site-logo {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 1000;
-  }
-
-  .menu-icon {
-    display: block;
-    margin: 0;
-  }
-
-  .menu-links {
-    display: none;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 10px;
-  }
-
-  .menu-links.show {
-    display: flex;
-  }
-
-  .lang-btn {
-    font-size: 1em;
-    padding: 6px 10px;
-  }
-}
-
-
 /* 🧩 Extra Actions */
 #extraActions button {
   margin: 10px 5px;
@@ -208,8 +118,7 @@ h2 {
 /* 🌐 Header & Navigation */
 .site-header {
   background-color: #2c2c3e;
-  padding: 20px;
-  padding-left: 60px; /* space for floating logo */
+  padding: 20px 20px 20px 80px; /* space for floating logo */
   border-bottom: 2px solid #ffd700;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   position: relative;
@@ -219,38 +128,26 @@ h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-
+  flex-wrap: nowrap;
 }
 
 .header-spacer {
   height: 60px;
 }
 
-@media (max-width: 768px) {
-  .header-spacer {
-    height: 80px; /* taller on mobile to fit flags + menu icon */
-  }
-}
-
-
-
 .site-header h1 {
   font-size: 1.8em;
   color: #ffd700;
   margin: 0;
   text-shadow: 1px 1px 5px #000;
+  text-align: center;
+  width: 100%;
 }
 
 .top-controls {
   display: flex;
   gap: 10px;
   align-items: center;
-}
-
-.language-switcher {
-  display: flex;
-  gap: 10px;
 }
 
 .lang-btn {
@@ -363,4 +260,92 @@ h2 {
 
 /* 🌍 Footer */
 .site-footer {
-  text-align:
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 40px;
+}
+
+.site-footer a {
+  display: block;
+  margin-top: 5px;
+  color: #0077cc;
+  text-decoration: none;
+}
+
+/* 📱 Mobile Adjustments */
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 1.6em;
+  }
+
+  #question {
+    font-size: 1.2em;
+  }
+
+  #answers button {
+    font-size: 1em;
+    padding: 10px;
+  }
+
+  #result {
+    font-size: 1.3em;
+    padding: 15px;
+  }
+
+  #restartBtn {
+    width: 100%;
+    font-size: 1em;
+  }
+
+  .header-top {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .site-header h1 {
+    padding: 0 20px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .top-controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 6px 10px;
+    border-radius: 8px;
+    z-index: 1000;
+    margin-bottom: 10px;
+  }
+
+  .floating-logo {
+    top: 10px;
+    left: 10px;
+  }
+
+  .menu-icon {
+    display: block;
+    margin: 0;
+  }
+
+  .menu-links {
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .menu-links.show {
+    display: flex;
+  }
+
+  .lang-btn {
+    font-size: 1em;
+    padding: 
