@@ -340,10 +340,7 @@ text-shadow: none; /* optional subtle depth */
     animation: titleGlowMobile 2s ease-in-out infinite alternate;
   }
 
-  @keyframes titleGlowMobile {
-    from { text-shadow: 0 0 3px #ffd700; }
-    to { text-shadow: 0 0 8px #ffd700; }
-  }
+
 
 
   .top-controls {
