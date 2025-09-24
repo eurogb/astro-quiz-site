@@ -1,19 +1,19 @@
 // 🌐 Detect language from URL
 const path = window.location.pathname;
-const lang = path.includes('/hr/') ? 'hr' : 'english';
+const lang = path.includes('/hr/') ? 'hr' : 'en';
 
 // 📦 Inject header
-fetch(`/assets/header-${lang}.html`)
+fetch(`/astro-quiz-site/assets/header-${lang}.html`)
   .then(res => res.text())
   .then(html => document.body.insertAdjacentHTML('afterbegin', html));
 
 // 📦 Inject footer
-fetch(`/assets/footer-${lang}.html`)
+fetch(`/astro-quiz-site/assets/footer-${lang}.html`)
   .then(res => res.text())
   .then(html => document.body.insertAdjacentHTML('beforeend', html));
 
 // 📦 Inject extra actions
-fetch(`/assets/extra-actions-${lang}.html`)
+fetch(`/astro-quiz-site/assets/extra-actions-${lang}.html`)
   .then(res => res.text())
   .then(html => {
     document.getElementById('quiz')?.insertAdjacentHTML('beforeend', html);
@@ -23,33 +23,26 @@ fetch(`/assets/extra-actions-${lang}.html`)
 document.addEventListener('click', function (e) {
   if (e.target?.id === 'whatsappShareBtn') {
     const messages = {
-      english: "Check out your astro quiz result! 🌟 https://astro.myDomain.com",
-      hr: "Pogledaj svoj astrološki rezultat! 🌟 https://astro.myDomain.com"
+      en: "Check out your astro quiz result! 🌟 https://eurogb.github.io/astro-quiz-site/en/",
+      hr: "Pogledaj svoj astrološki rezultat! 🌟 https://eurogb.github.io/astro-quiz-site/hr/"
     };
     const message = encodeURIComponent(messages[lang]);
     window.open(`https://wa.me/?text=${message}`, '_blank');
   }
 });
 
-// 📥 Load correct question set (optional)
-const questionFile = `/${lang}/quiz15question/questions.js`;
+// 📥 Load correct question set for 15-question quiz
+const questionFile = lang === 'hr'
+  ? '/astro-quiz-site/hr/astro-kviz-15-pitanja/questions.js'
+  : '/astro-quiz-site/en/quiz-15-Questions/questions.js';
+
 const script = document.createElement('script');
 script.src = questionFile;
+script.onload = () => {
+  if (typeof allQuizSets !== 'undefined') {
+    startQuiz?.(); // ✅ Start only after questions are loaded
+  } else {
+    console.error("Quiz data not found.");
+  }
+};
 document.head.appendChild(script);
-
-document.addEventListener("DOMContentLoaded", () => {
-  const lang = window.location.pathname.includes('/hr/') ? 'hr' : 'english';
-  const questionFile = `/${lang}/quiz15question/questions.js`;
-
-  const script = document.createElement('script');
-  script.src = questionFile;
-  script.onload = () => {
-    if (typeof allQuizSets !== 'undefined') {
-      startQuiz(); // ✅ Start only after questions are loaded
-    } else {
-      console.error("Quiz data not found.");
-    }
-  };
-  document.head.appendChild(script);
-});
-
