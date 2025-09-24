@@ -313,10 +313,10 @@ h2 {
     width: 100%;
     font-size: 1em;
   }
-.site-header {
-    position: relative;
-    padding-top: 1em; /* space for floating logo + top-controls */
+ .site-header {
+    padding: 20px;
   }
+
 .site-header h1 {
   background: rgba(255, 255, 255, 0.1);
 }
