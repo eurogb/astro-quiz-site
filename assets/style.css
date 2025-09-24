@@ -370,3 +370,9 @@ h2 {
   }
 }
 
+@media (max-width: 768px) {
+  .site-header h1 {
+    margin-top: 60px; /* pushes title below flags + menu icon */
+    text-align: center;
+  }
+}
