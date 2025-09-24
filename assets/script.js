@@ -45,9 +45,10 @@ script.onload = () => {
     console.error("Quiz data not found.");
   }
 };
+setTimeout(() => {
 document.head.appendChild(script);
 document.addEventListener("DOMContentLoaded", () => {
-setTimeout(() => {
+
   const toggle = document.getElementById("menuToggle");
   const links = document.getElementById("menuLinks");
 
