@@ -139,13 +139,11 @@ h2 {
 
 .header-top {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: nowrap;
-  position: relative;
   flex-direction: column;
+  align-items: center;
   text-align: center;
-  }
+}
+
 
 
 .header-spacer {
@@ -161,12 +159,14 @@ h2 {
   text-shadow: 1px 1px 5px #000;
 }
 .subtitle {
+  display: block;
   font-size: 1.2em;
   color: #87cefa;
   margin-top: 10px;
   font-style: italic;
   text-shadow: 1px 1px 3px #000;
 }
+
 
 
 .top-controls {
