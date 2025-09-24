@@ -89,8 +89,8 @@ h2 {
 /* 📱 Mobile Adjustments */
 @media (max-width: 768px) {
   .floating-logo {
-    top: 25px;
-    left: 25px;
+    top: 1px;
+    left: 1px;
   }
 }
 
