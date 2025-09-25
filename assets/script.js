@@ -60,6 +60,13 @@ fetch(`/astro-quiz-site/assets/extra-actions-${lang}.html`)
       });
     }
   });
+
+// Inject extra quiz actions
+fetch(`/astro-quiz-site/assets/extra-actions-${lang}.html`)
+  .then(r => r.text())
+  .then(html => document.getElementById("quiz")?.insertAdjacentHTML("beforeend", html))
+  .catch(console.error);
+
 // Load quiz questions
 const qf =
   lang === "hr"
