@@ -71,11 +71,9 @@ document.addEventListener("DOMContentLoaded", function () {
       const sign = zodiacSelect.value;
       if (!sign) return;
 
-      // Show loading
       document.getElementById("loading").style.display = "block";
       document.getElementById("forecast").style.display = "none";
 
-      // Simulate forecast fetch
       setTimeout(function () {
         document.getElementById("loading").style.display = "none";
         document.getElementById("forecast").style.display = "block";
@@ -85,3 +83,4 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
