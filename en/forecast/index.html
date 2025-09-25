@@ -13,9 +13,8 @@
   />
 </head>
 <body>
-  <!-- Header injected by script.js -->
+  <!-- Header injected -->
 
-  <!-- Ezoic ad placeholder -->
   <div id="ezoic-pub-ad-placeholder-101"></div>
 
   <h1>🌟 Dnevna Doza Zabave</h1>
@@ -38,7 +37,6 @@
     🔮 Pogledaj Horoskop
   </button>
 
-  <!-- Ezoic ad placeholder -->
   <div id="ezoic-pub-ad-placeholder-102"></div>
 
   <div id="output"></div>
@@ -47,45 +45,30 @@
     <a href="https://www.lfbuyer.com/hr/" target="_blank"
       ><button type="button">🌐 Oglasnik LF BUYER.COM</button></a
     >
-    <a
-      href="https://xysamja-commits.github.io/astro-kviz/"
-      target="_blank"
+    <a href="https://xysamja-commits.github.io/astro-kviz/" target="_blank"
       ><button type="button">🔮 Astro Kviz – 15 pitanja</button></a
     >
   </div>
 
-  <!-- Ezoic ad placeholder -->
   <div id="ezoic-pub-ad-placeholder-103"></div>
 
-  <!-- Footer injected by script.js -->
+  <!-- Footer injected -->
 
   <script src="horoskop.js"></script>
   <script src="/astro-quiz-site/assets/script.js"></script>
   <script>
     function showForecast() {
       const sign = document.getElementById("signSelect").value;
-      const today = new Date().toISOString().split("T")[0];
-      const forecast = horoscopes[today]?.[sign];
-      const theme = horoscopes[today]?.theme;
-
-      if (forecast) {
-        document.getElementById("output").innerHTML = `
-          <h2>Tema: ${theme}</h2>
-          <p>${forecast}</p>
-        `;
+      const day = new Date().toISOString().split("T")[0];
+      const f = horoscopes[day]?.[sign];
+      const th = horoscopes[day]?.theme;
+      const out = document.getElementById("output");
+      if (f) {
+        out.innerHTML = `<h2>Tema: ${th}</h2><p>${f}</p>`;
       } else {
-        document.getElementById("output").innerText =
-          "No forecast available for today.";
+        out.innerText = "No forecast available for today.";
       }
     }
-  </script>
-
-  <footer class="site-footer">
-    <p>&copy; <span id="current-year"></span> RIOGB j.d.o.o. All rights reserved.</p>
-  </footer>
-  <script>
-    document.getElementById("current-year").textContent =
-      new Date().getFullYear();
   </script>
 </body>
 </html>
