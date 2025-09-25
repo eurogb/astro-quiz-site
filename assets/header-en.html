@@ -1,30 +1,62 @@
 <header class="site-header">
   <!-- Floating logo (top-left) -->
-  <img src="/astro-quiz-site/assets/logo.png" alt="Moon Logo" class="floating-logo" />
+  <img
+    src="/astro-quiz-site/assets/logo.png"
+    alt="Moon Logo"
+    class="floating-logo"
+  />
 
-  <!-- Top-right controls (flags + menu icon) -->
+  <!-- Top-right controls (language flags + menu toggle) -->
   <div class="top-controls">
-    <a href="/astro-quiz-site/hr/prognoza/index.html" class="lang-btn">🇭🇷</a>
-    <a href="/astro-quiz-site/en/forecast/index.html" class="lang-btn">🇬🇧</a>
-    <button id="menuToggle" class="menu-icon">☰</button>
+    <a
+      href="/astro-quiz-site/hr/forecast/index.html"
+      class="lang-btn"
+      aria-label="Switch to Croatian"
+      >🇭🇷</a
+    >
+    <a
+      href="/astro-quiz-site/en/forecast/index.html"
+      class="lang-btn"
+      aria-label="Switch to English"
+      >🇬🇧</a
+    >
+    <button
+      id="menuToggle"
+      class="menu-icon"
+      aria-label="Toggle main menu"
+    >
+      ☰
+    </button>
   </div>
 
-  <!-- Spacer to offset floating logo -->
+  <!-- Spacer so the title isn’t hidden under the logo -->
   <div class="header-spacer"></div>
 
-  <!-- Title centered -->
+  <!-- Centered title and subtitle -->
   <div class="header-top">
     <h1>🔮 Discover Your Cosmic Profile</h1>
     <h2 class="subtitle">Written in the stars, revealed on your screen</h2>
   </div>
 
-  <!-- Navigation menu -->
+  <!-- Collapsible nav links -->
   <nav class="main-nav">
     <ul id="menuLinks" class="menu-links">
-      <li><a href="/astro-quiz-site/en/forecast/">🔮 Get Forecast</a></li>
-      <li><a href="/astro-quiz-site/en/quiz-15-Questions/">🧠 Astro Quiz – 15 Questions</a></li>
-      <li><a href="/astro-quiz-site/en/yourmatch/">💘 Your Ideal Partner</a></li>
-      <li><button id="whatsappShareBtn" class="whatsapp-icon">📲 Share your stars</button></li>
+      <li>
+        <a href="/astro-quiz-site/en/forecast/">🔮 Get Forecast</a>
+      </li>
+      <li>
+        <a href="/astro-quiz-site/en/quiz-15-Questions/"
+          >🧠 Astro Quiz – 15 Questions</a
+        >
+      </li>
+      <li>
+        <a href="/astro-quiz-site/en/yourmatch/">💘 Your Ideal Partner</a>
+      </li>
+      <li>
+        <button id="whatsappShareBtn" class="whatsapp-icon">
+          📲 Share your stars
+        </button>
+      </li>
     </ul>
   </nav>
 </header>
