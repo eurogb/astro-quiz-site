@@ -118,12 +118,11 @@ h2 {
 /* 🌐 Header & Navigation */
 .site-header {
   background-color: #2c2c3e;
+
   border-bottom: 2px solid #ffd700;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   position: relative;
-  padding-bottom: 10px;
 }
-
 .site-header h1 {
   font-size: 1.8em;
   color: #ffd700;
@@ -131,7 +130,6 @@ h2 {
   text-align: center;
   width: 100%;
   text-shadow: 1px 1px 5px #000;
-  animation: titleGlow 2s ease-in-out infinite alternate;
 }
 
 @keyframes titleGlow {
@@ -146,10 +144,20 @@ h2 {
   text-align: center;
 }
 
+
+
 .header-spacer {
   height: 60px;
 }
 
+.site-header h1 {
+  font-size: 1.8em;
+  color: #ffd700;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  text-shadow: 1px 1px 5px #000;
+}
 .subtitle {
   display: block;
   font-size: 1.2em;
@@ -158,6 +166,8 @@ h2 {
   font-style: italic;
   text-shadow: 1px 1px 3px #000;
 }
+
+
 
 .top-controls {
   position: absolute;
@@ -203,13 +213,7 @@ h2 {
 .main-nav a:hover {
   color: #ffd700;
 }
-
 .menu-icon {
-  font-size: 1.5em;
-  background: none;
-  border: none;
-  color: #ffd700;
-  cursor: pointer;
   animation: pulse 2s infinite ease-in-out;
 }
 
@@ -218,22 +222,22 @@ h2 {
   50% { transform: scale(1.1); }
   100% { transform: scale(1); }
 }
-
-/* 🌙 Floating Logo */
 .floating-logo {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  height: 40px;
-  width: auto;
-  z-index: 1000;
-  pointer-events: none;
   animation: glow 2s ease-in-out infinite alternate;
 }
 
 @keyframes glow {
   from { filter: drop-shadow(0 0 2px #ffd700); }
   to { filter: drop-shadow(0 0 8px #ffd700); }
+}
+
+/* ☰ Menu Icon */
+.menu-icon {
+  font-size: 1.5em;
+  background: none;
+  border: none;
+  color: #ffd700;
+  cursor: pointer;
 }
 
 /* 🎭 Dropdown Menu */
@@ -290,25 +294,36 @@ h2 {
   color: #1ebe57;
 }
 
+/* 🌙 Floating Logo */
+.floating-logo {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  height: 40px;
+  width: auto;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+
+@keyframes glow {
+  from { filter: drop-shadow(0 0 2px #ffd700); }
+  to { filter: drop-shadow(0 0 8px #ffd700); }
+}
+
 /* 🌍 Footer */
 .site-footer {
   text-align: center;
   font-size: 0.9rem;
-  color: #999;
+  color: #666;
   margin-top: 40px;
-  padding: 20px 10px;
 }
 
 .site-footer a {
   display: block;
-  margin-top: 8px;
-  color: #87cefa;
+  margin-top: 5px;
+  color: #0077cc;
   text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.site-footer a:hover {
-  color: #ffd700;
 }
 
 /* 📱 Mobile Adjustments */
@@ -339,16 +354,47 @@ h2 {
     width: 100%;
     font-size: 1em;
   }
-
-  .site-header h1 {
-    font-size: 1.6em;
-    padding: 0 10px;
-    width: 100%;
-    box-sizing: border-box;
-    text-shadow: none;
+.site-header {
+    position: relative;
+    padding: 20px;
   }
 
-  .menu-links {
+.site-header h1 {
+text-shadow: none; /* optional subtle depth */
+
+}
+
+  .site-header h1 {
+    animation: titleGlowMobile 2s ease-in-out infinite alternate;
+  }
+
+
+
+
+  .top-controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+  }
+
+  .header-top {
+    display: block;
+    text-align: cen
+  }
+.site-header h1 {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.6em;
+  padding: 0 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+ .menu-links {
     display: none;
     flex-direction: column;
     align-items: center;
@@ -356,10 +402,7 @@ h2 {
     margin-top: 20px;
     width: 100%;
   }
-.header-spacer {
-  height: 80px;
-}
-  
+
   .menu-links.show {
     display: flex;
   }
