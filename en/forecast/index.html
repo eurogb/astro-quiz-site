@@ -13,46 +13,45 @@
   <div id="ezoic-pub-ad-placeholder-101"></div>
 
   <main>
-    <div id="forecastForm">
-      <div class="form-row">
-        <select id="zodiacSelect">
-          <option value="">🔍 Choose your sign</option>
-          <option value="aries">♈ Aries</option>
-          <option value="taurus">♉ Taurus</option>
-          <option value="gemini">♊ Gemini</option>
-          <option value="cancer">♋ Cancer</option>
-          <option value="leo">♌ Leo</option>
-          <option value="virgo">♍ Virgo</option>
-          <option value="libra">♎ Libra</option>
-          <option value="scorpio">♏ Scorpio</option>
-          <option value="sagittarius">♐ Sagittarius</option>
-          <option value="capricorn">♑ Capricorn</option>
-          <option value="aquarius">♒ Aquarius</option>
-          <option value="pisces">♓ Pisces</option>
-        </select>
-        <button id="forecastBtn">🔮 See Your Forecast</button>
-      </div>
+  <div id="forecastForm">
+    <div class="form-row">
+      <select id="zodiacSelect">
+        <option value="">🔍 Choose your sign</option>
+        <option value="aries">♈ Aries</option>
+        <option value="taurus">♉ Taurus</option>
+        <option value="gemini">♊ Gemini</option>
+        <option value="cancer">♋ Cancer</option>
+        <option value="leo">♌ Leo</option>
+        <option value="virgo">♍ Virgo</option>
+        <option value="libra">♎ Libra</option>
+        <option value="scorpio">♏ Scorpio</option>
+        <option value="sagittarius">♐ Sagittarius</option>
+        <option value="capricorn">♑ Capricorn</option>
+        <option value="aquarius">♒ Aquarius</option>
+        <option value="pisces">♓ Pisces</option>
+      </select>
+      <button id="forecastBtn">🔮 See Your Forecast</button>
     </div>
+  </div>
 
-    <div id="output"></div>
+  <div id="output" style="display:none;">
+    <h2 id="theme"></h2>
+    <p id="forecast-text"></p>
 
-    <div id="ezoic-pub-ad-placeholder-102"></div>
+    <button id="check-again">🔁 Check another sign</button>
+    <button onclick="location.href='/en/quiz-15-Questions/'">🧠 Astro Quiz – 15 Questions</button>
+    <button onclick="location.href='/en/yourmatch/'">💘 Your Perfect Partner</button>
 
-    <div id="loading" style="display:none;">🔮 Reading the stars…</div>
-
-    <div id="forecast" style="display:none;">
-      <h2 id="theme"></h2>
-      <p id="forecast-text"></p>
-
-      <button id="check-again">🔁 Check another sign</button>
-      <button onclick="location.href='/en/quiz-15-Questions/'">🧠 Astro Quiz – 15 Questions</button>
-      <button onclick="location.href='/en/yourmatch/'">💘 Your Perfect Partner</button>
-
-      <div style="margin-top: 20px;">
-        <button onclick="shareWhatsApp()">📲 Share on WhatsApp</button>
-      </div>
+    <div style="margin-top: 20px;">
+      <button onclick="shareWhatsApp()">📲 Share on WhatsApp</button>
     </div>
-  </main>
+  </div>
+
+  <div id="ezoic-pub-ad-placeholder-102"></div>
+
+  <div id="loading" style="display:none;">🔮 Reading the stars…</div>
+</main>
+
 
   <div id="ezoic-pub-ad-placeholder-103"></div>
 
