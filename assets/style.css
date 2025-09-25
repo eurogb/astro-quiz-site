@@ -96,6 +96,18 @@ h2 {
   to { text-shadow: 0 0 15px #ffd700; }
 }
 
+/* 🌙 Floating Logo */
+.floating-logo {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  height: 40px;
+  width: auto;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+/* ☰ Top Controls */
 .top-controls {
   position: absolute;
   top: 10px;
@@ -130,6 +142,46 @@ h2 {
   height: 40px;
   width: auto;
   vertical-align: middle;
+}
+
+/* 🎭 Dropdown Menu */
+.menu-links {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.4s ease, max-height 0.4s ease;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.menu-links.show {
+  opacity: 1;
+  max-height: 500px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.menu-links li a,
+.menu-links li button {
+  color: #87cefa;
+  background: none;
+  border: none;
+  font-size: 1.1em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.menu-links li a:hover,
+.menu-links li button:hover {
+  color: #ffd700;
 }
 
 /* 📱 Mobile Adjustments */
