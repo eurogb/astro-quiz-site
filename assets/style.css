@@ -281,7 +281,7 @@ h2 {
 }
 
 
-    select {
+    .select {
       padding: 10px;
       font-size: 1.1em;
       border-radius: 8px;
@@ -292,7 +292,7 @@ h2 {
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
     }
 
-    button {
+    .button {
       padding: 10px 20px;
       font-size: 1.1em;
       border-radius: 8px;
@@ -303,11 +303,11 @@ h2 {
       transition: background-color 0.3s ease;
     }
 
-    button:hover {
+    .button:hover {
       background-color: #ffcc00;
     }
 
-    #output {
+    .#output {
       margin-top: 30px;
       padding: 20px;
       background-color: rgba(255, 255, 255, 0.05);
