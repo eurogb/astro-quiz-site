@@ -42,12 +42,24 @@ fetch(`/astro-quiz-site/assets/footer-${lang}.html`)
   .then(html => document.body.insertAdjacentHTML("beforeend", html))
   .catch(console.error);
 
-// Inject extra quiz actions
+// 📦 Inject extra actions
 fetch(`/astro-quiz-site/assets/extra-actions-${lang}.html`)
-  .then(r => r.text())
-  .then(html => document.getElementById("quiz")?.insertAdjacentHTML("beforeend", html))
-  .catch(console.error);
+  .then(res => res.text())
+  .then(html => {
+    const quizEl = document.getElementById('quiz');
+    if (quizEl) quizEl.insertAdjacentHTML('beforeend', html);
 
+    // 🎯 Add event listener for "Pogledaj horoskop"
+    const horoscopeBtn = document.getElementById('horoscopeBtn');
+    if (horoscopeBtn) {
+      horoscopeBtn.addEventListener('click', () => {
+        const url = lang === 'hr' 
+          ? '/astro-quiz-site/hr/prognoza/index.html'
+          : '/astro-quiz-site/en/forecast/index.html';
+        window.location.href = url;
+      });
+    }
+  });
 // Load quiz questions
 const qf =
   lang === "hr"
