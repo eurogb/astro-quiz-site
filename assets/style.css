@@ -258,3 +258,47 @@ h2 {
 .whatsapp-icon:hover {
   color: #1ebe57;
 }
+@media (min-width: 769px) {
+  /* Pulsar keyframes */
+  @keyframes pulsar {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 0 5px #ffd700;
+    }
+    50% {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px #ffd700;
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: 0 0 5px #ffd700;
+    }
+  }
+
+  /* Make menu-icon match lang-btn */
+  .menu-icon {
+    background-color: #ffd700;
+    color: #1e1e2f;
+    padding: 4px 10px;
+    font-size: 1em;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    /* Pulsar animation */
+    animation: pulsar 2s ease-in-out infinite;
+  }
+
+  .menu-icon:hover {
+    background-color: #ffcc00;
+  }
+
+  /* Also animate the logo */
+  .floating-logo {
+    animation: pulsar 2s ease-in-out infinite alternate;
+  }
+}
+
