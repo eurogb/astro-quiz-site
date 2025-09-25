@@ -60,3 +60,28 @@ script.onload = () => {
   }
 };
 document.head.appendChild(script);
+
+// 🔮 Forecast button logic
+document.addEventListener("DOMContentLoaded", function () {
+  const forecastBtn = document.getElementById("forecastBtn");
+  const zodiacSelect = document.getElementById("zodiacSelect");
+
+  if (forecastBtn && zodiacSelect) {
+    forecastBtn.addEventListener("click", function () {
+      const sign = zodiacSelect.value;
+      if (!sign) return;
+
+      // Show loading
+      document.getElementById("loading").style.display = "block";
+      document.getElementById("forecast").style.display = "none";
+
+      // Simulate forecast fetch
+      setTimeout(function () {
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("forecast").style.display = "block";
+        document.getElementById("theme").textContent = `Your cosmic theme for ${sign}`;
+        document.getElementById("forecast-text").textContent = `✨ The stars whisper secrets for ${sign}...`;
+      }, 1500);
+    });
+  }
+});
