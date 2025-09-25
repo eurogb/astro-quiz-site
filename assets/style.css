@@ -299,14 +299,14 @@ h2 {
     background-color: #ffcc00;
 }
 
-/* Pulsating animation */
-@keyframes glow {
+/* Pulsar animation definition */
+@keyframes pulsar {
     0%   { transform: scale(1);    box-shadow: 0 0 3px #ffd700; }
     50%  { transform: scale(1.05); box-shadow: 0 0 10px #ffd700; }
     100% { transform: scale(1);    box-shadow: 0 0 3px #ffd700; }
 }
 
-/* Apply pulsar to the floating logo (only the logo should pulse) */
-.floating-logo {
-    animation: glow 2s ease-in-out infinite alternate;
+/* Apply pulsar to the element that previously used the glow animation */
+.your-glow-element {          /* replace with the actual selector, e.g., .floating-logo */
+    animation: pulsar 4s ease-in-out infinite alternate;
 }
