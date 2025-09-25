@@ -308,5 +308,5 @@ h2 {
 
 /* Apply pulsar to the floating logo (only the logo should pulse) */
 .floating-logo {
-    animation: pulsar 4s ease-in-out infinite alternate;
+    animation: pulsar 8s ease-in-out infinite alternate;
 }
