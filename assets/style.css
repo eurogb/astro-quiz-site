@@ -356,7 +356,10 @@ h2 {
     margin-top: 20px;
     width: 100%;
   }
-
+.header-spacer {
+  height: 80px;
+}
+  
   .menu-links.show {
     display: flex;
   }
