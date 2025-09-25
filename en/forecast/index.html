@@ -3,124 +3,89 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Daily Horoscope</title>
+  <meta http-equiv="Content-Language" content="en" />
+  <title>Dnevni horoskop</title>
+
+  <!-- Global CSS -->
   <link
     rel="stylesheet"
-    href="https://eurogb.github.io/astro-quiz-site/assets/style.css"
+    href="/astro-quiz-site/assets/style.css"
   />
 </head>
 <body>
   <!-- Header injected by script.js -->
+
+  <!-- Ezoic ad placeholder -->
   <div id="ezoic-pub-ad-placeholder-101"></div>
 
-  <main>
-    <div id="forecastForm">
-      <div class="form-row">
-        <select id="zodiacSelect">
-          <option value="aries">♈ Aries</option>
-          <option value="taurus">♉ Taurus</option>
-          <option value="gemini">♊ Gemini</option>
-          <option value="cancer">♋ Cancer</option>
-          <option value="leo">♌ Leo</option>
-          <option value="virgo">♍ Virgo</option>
-          <option value="libra">♎ Libra</option>
-          <option value="scorpio">♏ Scorpio</option>
-          <option value="sagittarius">♐ Sagittarius</option>
-          <option value="capricorn">♑ Capricorn</option>
-          <option value="aquarius">♒ Aquarius</option>
-          <option value="pisces">♓ Pisces</option>
-        </select>
-        <button id="forecastBtn" type="button">
-          🔮 See Your Forecast
-        </button>
-      </div>
-    </div>
+  <h1>🌟 Dnevna Doza Zabave</h1>
 
-    <div id="ezoic-pub-ad-placeholder-102"></div>
+  <select id="signSelect">
+    <option value="aries">♈️ Ovan</option>
+    <option value="taurus">♉️ Bik</option>
+    <option value="gemini">♊️ Blizanci</option>
+    <option value="cancer">♋️ Rak</option>
+    <option value="leo">♌️ Lav</option>
+    <option value="virgo">♍️ Djevica</option>
+    <option value="libra">♎️ Vaga</option>
+    <option value="scorpio">♏️ Škorpion</option>
+    <option value="sagittarius">♐️ Strijelac</option>
+    <option value="capricorn">♑️ Jarac</option>
+    <option value="aquarius">♒️ Vodenjak</option>
+    <option value="pisces">♓️ Ribe</option>
+  </select>
+  <button onclick="showForecast()" type="button">
+    🔮 Pogledaj Horoskop
+  </button>
 
-    <div id="output" style="display:none;">
-      <h2 id="theme"></h2>
-      <p id="forecast-text"></p>
+  <!-- Ezoic ad placeholder -->
+  <div id="ezoic-pub-ad-placeholder-102"></div>
 
-      <button id="check-again" type="button">🔁 Check another sign</button>
-      <button
-        type="button"
-        onclick="location.href='/astro-quiz-site/en/quiz-15-Questions/'"
-      >
-        🧠 Astro Quiz – 15 Questions
-      </button>
-      <button
-        type="button"
-        onclick="location.href='/astro-quiz-site/en/yourmatch/'"
-      >
-        💘 Your Perfect Partner
-      </button>
+  <div id="output"></div>
 
-      <div style="margin-top: 20px;">
-        <button type="button" onclick="shareWhatsApp()">
-          📲 Share on WhatsApp
-        </button>
-      </div>
-    </div>
-  </main>
+  <div>
+    <a href="https://www.lfbuyer.com/hr/" target="_blank"
+      ><button type="button">🌐 Oglasnik LF BUYER.COM</button></a
+    >
+    <a
+      href="https://xysamja-commits.github.io/astro-kviz/"
+      target="_blank"
+      ><button type="button">🔮 Astro Kviz – 15 pitanja</button></a
+    >
+  </div>
 
+  <!-- Ezoic ad placeholder -->
   <div id="ezoic-pub-ad-placeholder-103"></div>
 
   <!-- Footer injected by script.js -->
 
-  <script src="horoscope.js"></script>
+  <script src="horoskop.js"></script>
   <script src="/astro-quiz-site/assets/script.js"></script>
   <script>
-    // 🔮 Forecast logic
-    document.addEventListener("DOMContentLoaded", () => {
-      const forecastBtn = document.getElementById("forecastBtn");
-      const zodiacSelect = document.getElementById("zodiacSelect");
-      const outputDiv = document.getElementById("output");
-      const themeEl = document.getElementById("theme");
-      const textEl = document.getElementById("forecast-text");
-      const loadingEl = document.getElementById("loading");
+    function showForecast() {
+      const sign = document.getElementById("signSelect").value;
+      const today = new Date().toISOString().split("T")[0];
+      const forecast = horoscopes[today]?.[sign];
+      const theme = horoscopes[today]?.theme;
 
-      forecastBtn.addEventListener("click", () => {
-        const sign = zodiacSelect.value;
-        const today = new Date().toISOString().split("T")[0];
-        if (!sign || !horoscopes[today]) {
-          alert("Please select a valid sign.");
-          return;
-        }
+      if (forecast) {
+        document.getElementById("output").innerHTML = `
+          <h2>Tema: ${theme}</h2>
+          <p>${forecast}</p>
+        `;
+      } else {
+        document.getElementById("output").innerText =
+          "No forecast available for today.";
+      }
+    }
+  </script>
 
-        loadingEl.style.display = "block";
-        outputDiv.style.display = "none";
-
-        setTimeout(() => {
-          loadingEl.style.display = "none";
-          outputDiv.style.display = "block";
-          themeEl.textContent = `🌌 Theme: ${horoscopes[today].theme}`;
-          textEl.textContent = horoscopes[today][sign];
-        }, 800);
-      });
-
-      document
-        .getElementById("check-again")
-        .addEventListener("click", () => {
-          outputDiv.style.display = "none";
-          zodiacSelect.value = "aries";
-        });
-
-      window.shareWhatsApp = () => {
-        const sign = zodiacSelect.value;
-        const today = new Date().toISOString().split("T")[0];
-        if (!sign || !horoscopes[today]) return;
-        const message = `🌟 My daily horoscope for ${sign}: ${
-          horoscopes[today][sign]
-        } — Theme: ${horoscopes[today].theme}`;
-        const url =
-          "https://eurogb.github.io/astro-quiz-site/en/forecast/";
-        window.open(
-          `https://wa.me/?text=${encodeURIComponent(message + " " + url)}`,
-          "_blank"
-        );
-      };
-    });
+  <footer class="site-footer">
+    <p>&copy; <span id="current-year"></span> RIOGB j.d.o.o. All rights reserved.</p>
+  </footer>
+  <script>
+    document.getElementById("current-year").textContent =
+      new Date().getFullYear();
   </script>
 </body>
 </html>
