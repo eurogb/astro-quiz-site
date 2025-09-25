@@ -1,9 +1,10 @@
 // 🌐 Detect language from URL
 const path = window.location.pathname;
 const lang = path.includes('/hr/') ? 'hr' : 'en';
+const base = "https://eurogb.github.io/astro-quiz-site";
 
 // 📦 Inject header
-fetch(`/astro-quiz-site/assets/header-${lang}.html`)
+fetch(`${base}/assets/header-${lang}.html`)
   .then(res => res.text())
   .then(html => {
     document.body.insertAdjacentHTML('afterbegin', html);
@@ -29,26 +30,29 @@ fetch(`/astro-quiz-site/assets/header-${lang}.html`)
         window.open(`https://wa.me/?text=${message}`, '_blank');
       });
     }
-  });
+  })
+  .catch(err => console.error("Header load failed:", err));
 
 // 📦 Inject footer
-fetch(`/astro-quiz-site/assets/footer-${lang}.html`)
+fetch(`${base}/assets/footer-${lang}.html`)
   .then(res => res.text())
   .then(html => {
     document.body.insertAdjacentHTML('beforeend', html);
-  });
+  })
+  .catch(err => console.error("Footer load failed:", err));
 
 // 📦 Inject extra actions
-fetch(`/astro-quiz-site/assets/extra-actions-${lang}.html`)
+fetch(`${base}/assets/extra-actions-${lang}.html`)
   .then(res => res.text())
   .then(html => {
     document.getElementById('quiz')?.insertAdjacentHTML('beforeend', html);
-  });
+  })
+  .catch(err => console.error("Extra actions load failed:", err));
 
 // 📥 Load correct question set
 const questionFile = lang === 'hr'
-  ? '/astro-quiz-site/hr/astro-kviz-15-pitanja/questions.js'
-  : '/astro-quiz-site/en/quiz-15-Questions/questions.js';
+  ? `${base}/hr/astro-kviz-15-pitanja/questions.js`
+  : `${base}/en/quiz-15-Questions/questions.js`;
 
 const script = document.createElement('script');
 script.src = questionFile;
