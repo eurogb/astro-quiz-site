@@ -68,8 +68,7 @@ h2 {
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
   max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 
 /* 🌐 Header & Navigation */
@@ -91,8 +90,9 @@ h2 {
   margin: 0 auto;
   text-align: center;
   width: 100%;
-  text-shadow: 1px 1px 5px #000;
-  animation: titleGlow 2s ease-in-out infinite alternate;
+  /* remove glow */
+  animation: none;
+  text-shadow: none;
 }
 
 .subtitle {
@@ -120,7 +120,7 @@ h2 {
   pointer-events: none;
 }
 
-/* ☰ Top Controls */
+/* ☰ & ⚙️ Top Controls */
 .top-controls {
   position: absolute;
   top: 10px;
@@ -133,43 +133,25 @@ h2 {
   z-index: 1000;
 }
 
-.lang-btn {
+.lang-btn,
+.menu-icon {
   background-color: #ffd700;
   color: #1e1e2f;
   padding: 4px 10px;
-  font-size: 0.9em;
+  font-size: 1em;
   height: 40px;
   display: flex;
   align-items: center;
   border-radius: 6px;
+  border: none;
   text-decoration: none;
-  font-weight: bold;
+  cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.lang-btn:hover {
+.lang-btn:hover,
+.menu-icon:hover {
   background-color: #ffcc00;
-}
-
-.lang-btn img {
-  height: 40px;
-  width: auto;
-  vertical-align: middle;
-}
-
-/* ☎️ WhatsApp Icon */
-.whatsapp-icon {
-  font-size: 1.1em;
-  color: #25D366;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 6px 10px;
-  transition: color 0.3s ease;
-}
-
-.whatsapp-icon:hover {
-  color: #1ebe57;
 }
 
 /* 🎭 Dropdown Menu */
@@ -222,14 +204,11 @@ h2 {
     font-size: 1.6em;
   }
 
-  .lang-btn {
+  .lang-btn,
+  .menu-icon {
     padding: 6px 10px;
     font-size: 0.9em;
     height: auto;
-  }
-
-  .lang-btn img {
-    height: 20px;
   }
 
   #forecastBtn {
@@ -245,7 +224,7 @@ h2 {
   }
 }
 
-/* 🚀 Main Navigation (desktop) */
+/* 🚀 Main Nav (desktop) */
 .main-nav {
   margin-top: 15px;
   display: flex;
@@ -263,4 +242,19 @@ h2 {
 
 .main-nav a:hover {
   color: #ffd700;
+}
+
+/* ☎️ WhatsApp icon */
+.whatsapp-icon {
+  font-size: 1.1em;
+  color: #25D366;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 10px;
+  transition: color 0.3s ease;
+}
+
+.whatsapp-icon:hover {
+  color: #1ebe57;
 }
