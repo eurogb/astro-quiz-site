@@ -9,7 +9,7 @@ fetch(`${base}/assets/header-${lang}.html`)
   .then(html => {
     document.body.insertAdjacentHTML('afterbegin', html);
 
-    // ☰ Menu toggle
+    // ✅ Menu toggle logic inside this block
     const toggle = document.getElementById("menuToggle");
     const links = document.getElementById("menuLinks");
     if (toggle && links) {
@@ -17,6 +17,10 @@ fetch(`${base}/assets/header-${lang}.html`)
         links.classList.toggle("show");
       });
     }
+
+    // WhatsApp share logic...
+  });
+
 
     // 📲 WhatsApp share button
     const shareBtn = document.getElementById("whatsappShareBtn");
@@ -32,6 +36,7 @@ fetch(`${base}/assets/header-${lang}.html`)
     }
   })
   .catch(err => console.error("Header load failed:", err));
+
 
 // 📦 Inject footer
 fetch(`${base}/assets/footer-${lang}.html`)
