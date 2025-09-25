@@ -9,7 +9,7 @@ fetch(`${base}/assets/header-${lang}.html`)
   .then(html => {
     document.body.insertAdjacentHTML('afterbegin', html);
 
-    // ✅ Menu toggle logic inside this block
+    // ☰ Menu toggle
     const toggle = document.getElementById("menuToggle");
     const links = document.getElementById("menuLinks");
     if (toggle && links) {
@@ -18,11 +18,7 @@ fetch(`${base}/assets/header-${lang}.html`)
       });
     }
 
-    // WhatsApp share logic...
-  });
-
-
-    // 📲 WhatsApp share button
+    // 📲 WhatsApp share button inside header nav
     const shareBtn = document.getElementById("whatsappShareBtn");
     if (shareBtn) {
       shareBtn.addEventListener("click", () => {
@@ -37,7 +33,6 @@ fetch(`${base}/assets/header-${lang}.html`)
   })
   .catch(err => console.error("Header load failed:", err));
 
-
 // 📦 Inject footer
 fetch(`${base}/assets/footer-${lang}.html`)
   .then(res => res.text())
@@ -46,7 +41,7 @@ fetch(`${base}/assets/footer-${lang}.html`)
   })
   .catch(err => console.error("Footer load failed:", err));
 
-// 📦 Inject extra actions
+// 📦 Inject extra actions into quiz pages
 fetch(`${base}/assets/extra-actions-${lang}.html`)
   .then(res => res.text())
   .then(html => {
@@ -54,7 +49,7 @@ fetch(`${base}/assets/extra-actions-${lang}.html`)
   })
   .catch(err => console.error("Extra actions load failed:", err));
 
-// 📥 Load correct question set
+// 📥 Load correct quiz questions script
 const questionFile = lang === 'hr'
   ? `${base}/hr/astro-kviz-15-pitanja/questions.js`
   : `${base}/en/quiz-15-Questions/questions.js`;
@@ -71,7 +66,7 @@ script.onload = () => {
 document.head.appendChild(script);
 
 // 🔮 Forecast logic
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const forecastBtn = document.getElementById("forecastBtn");
   const zodiacSelect = document.getElementById("zodiacSelect");
   const outputDiv = document.getElementById("output");
@@ -79,11 +74,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const textEl = document.getElementById("forecast-text");
   const loadingEl = document.getElementById("loading");
 
-  forecastBtn?.addEventListener("click", function () {
+  forecastBtn?.addEventListener("click", () => {
     const sign = zodiacSelect.value;
     const today = new Date().toISOString().split("T")[0];
-
-    if (!sign || !horoscopes[today]) return alert("Please select a valid sign.");
+    if (!sign || !horoscopes[today]) {
+      alert("Please select a valid sign.");
+      return;
+    }
 
     loadingEl.style.display = "block";
     outputDiv.style.display = "none";
@@ -101,11 +98,10 @@ document.addEventListener("DOMContentLoaded", function () {
     zodiacSelect.value = "";
   });
 
-  window.shareWhatsApp = function () {
+  window.shareWhatsApp = () => {
     const sign = zodiacSelect.value;
     const today = new Date().toISOString().split("T")[0];
     if (!sign || !horoscopes[today]) return;
-
     const message = `🌟 My daily horoscope for ${sign}: ${horoscopes[today][sign]} — Theme: ${horoscopes[today].theme}`;
     const url = "https://www.lfbuyer.com/en/forecast/";
     window.open(`https://wa.me/?text=${encodeURIComponent(message + " " + url)}`, "_blank");
