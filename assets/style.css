@@ -54,8 +54,8 @@ button:hover {
 
 /* Task 5: Full-width, spaced mobile buttons */
 @media (max-width: 768px) {
-  #output button,
-  .form-row button {
+  .form-row button,
+  #output button {
     width: 100%;
     margin: 10px 0;
   }
@@ -68,99 +68,126 @@ button:hover {
   margin: 20px 0;
 }
 
-/* 🌐 Header & Nav (unchanged) */
-.site-header { /* …existing rules… */ }
-.top-controls { /* … */ }
-.menu-icon { /* … */ }
-/* etc. */
+/* 🌐 Header & Navigation */
+.site-header {
+  background-color: #2c2c3e;
+  border-bottom: 2px solid #ffd700;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+  padding: 20px;
+}
 
-/* —— Samja.html inline style moved below —— */
-body {
-  background: linear-gradient(to right, #1e1e2f, #2c2c3e);
-  color: #f0f0f5;
-  font-family: 'Segoe UI', sans-serif;
-  text-align: center;
-  padding: 40px;
+.header-spacer {
+  height: 60px;
+}
+
+.site-header h1 {
   margin: 0;
-}
-
-h1 {
-  font-size: 2.5em;
-  margin-bottom: 20px;
+  font-size: 1.8em;
   color: #ffd700;
-  text-shadow: 1px 1px 5px #000;
+  text-align: center;
 }
 
-select {
-  padding: 10px;
-  font-size: 1.1em;
-  border-radius: 8px;
-  border: none;
-  background-color: #333;
-  color: #fff;
-  margin-bottom: 20px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+.subtitle {
+  font-size: 1.2em;
+  color: #87cefa;
+  margin-top: 10px;
+  font-style: italic;
 }
 
-button {
-  padding: 10px 20px;
-  font-size: 1.1em;
-  border-radius: 8px;
-  border: none;
+.top-controls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.lang-btn,
+.menu-icon {
   background-color: #ffd700;
   color: #1e1e2f;
+  padding: 8px 16px;
+  font-size: 1em;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-button:hover {
+.menu-icon {
+  font-size: 1.2em;
+}
+
+.lang-btn:hover,
+.menu-icon:hover {
   background-color: #ffcc00;
 }
 
-#output {
-  margin-top: 30px;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+/* ✨ Glow animation */
+@keyframes glow {
+  0% {
+    filter: drop-shadow(0 0 2px #ffd700);
+  }
+  50% {
+    filter: drop-shadow(0 0 8px #ffd700);
+  }
+  100% {
+    filter: drop-shadow(0 0 2px #ffd700);
+  }
 }
 
-h2 {
-  font-size: 1.5em;
-  color: #87cefa;
-  margin-bottom: 10px;
+.floating-logo {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  height: 40px;
+  animation: glow 4s ease-in-out infinite alternate;
+  pointer-events: none;
 }
 
-p {
-  font-size: 1.2em;
-  line-height: 1.6;
+.menu-links {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.4s ease, max-height 0.4s ease;
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
 }
 
-@media (max-width: 768px) {
-  body {
-    padding: 20px;
+/* Desktop: always show nav inline */
+@media (min-width: 768px) {
+  .menu-links {
+    opacity: 1 !important;
+    max-height: none !important;
+    overflow: visible;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+    background: none;
+    position: static;
+    margin-top: 0;
   }
-  h1 {
-    font-size: 2em;
-  }
-  select,
-  button {
-    width: 100%;
-    font-size: 1em;
-    margin-bottom: 15px;
-  }
-  #output {
-    padding: 15px;
-    font-size: 1em;
-  }
-  h2 {
-    font-size: 1.3em;
-  }
-  p {
-    font-size: 1.1em;
-    line-height: 1.5;
-  }
+}
+
+/* 📲 WhatsApp Icon */
+.whatsapp-icon {
+  font-size: 1.1em;
+  color: #25d366;
+  padding: 6px 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.whatsapp-icon:hover {
+  color: #1ebe57;
 }
