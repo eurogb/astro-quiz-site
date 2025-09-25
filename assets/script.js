@@ -69,7 +69,7 @@ document.head.appendChild(script);
 document.addEventListener("DOMContentLoaded", function () {
   const forecastBtn = document.getElementById("forecastBtn");
   const zodiacSelect = document.getElementById("zodiacSelect");
-  const forecastDiv = document.getElementById("forecast");
+  const outputDiv = document.getElementById("output");
   const themeEl = document.getElementById("theme");
   const textEl = document.getElementById("forecast-text");
   const loadingEl = document.getElementById("loading");
@@ -81,18 +81,18 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!sign || !horoscopes[today]) return alert("Please select a valid sign.");
 
     loadingEl.style.display = "block";
-    forecastDiv.style.display = "none";
+    outputDiv.style.display = "none";
 
     setTimeout(() => {
       loadingEl.style.display = "none";
-      forecastDiv.style.display = "block";
+      outputDiv.style.display = "block";
       themeEl.textContent = `🌌 Theme: ${horoscopes[today].theme}`;
       textEl.textContent = horoscopes[today][sign];
     }, 800);
   });
 
   document.getElementById("check-again")?.addEventListener("click", () => {
-    forecastDiv.style.display = "none";
+    outputDiv.style.display = "none";
     zodiacSelect.value = "";
   });
 
