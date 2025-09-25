@@ -29,34 +29,37 @@ fetch(`/astro-quiz-site/assets/header-${lang}.html`)
         window.open(`https://wa.me/?text=${message}`, '_blank');
       });
     }
-  });
+  })
+  .catch(err => console.error("Header load failed:", err));
 
 // 📦 Inject footer
 fetch(`/astro-quiz-site/assets/footer-${lang}.html`)
   .then(res => res.text())
   .then(html => {
     document.body.insertAdjacentHTML('beforeend', html);
-  });
+  })
+  .catch(err => console.error("Footer load failed:", err));
 
 // 📦 Inject extra actions
 fetch(`/astro-quiz-site/assets/extra-actions-${lang}.html`)
   .then(res => res.text())
   .then(html => {
     document.getElementById('quiz')?.insertAdjacentHTML('beforeend', html);
-  });
+  })
+  .catch(err => console.error("Extra actions load failed:", err));
 
-// 📥 Load correct question set
+// 📥 Load correct quiz question set
 const questionFile = lang === 'hr'
   ? '/astro-quiz-site/hr/astro-kviz-15-pitanja/questions.js'
   : '/astro-quiz-site/en/quiz-15-Questions/questions.js';
 
-const script = document.createElement('script');
-script.src = questionFile;
-script.onload = () => {
+const quizScript = document.createElement('script');
+quizScript.src = questionFile;
+quizScript.onload = () => {
   if (typeof allQuizSets !== 'undefined') {
-    startQuiz?.(); // ✅ Start only after questions are loaded
+    startQuiz?.();
   } else {
     console.error("Quiz data not found.");
   }
 };
-document.head.appendChild(script);
+document.head.appendChild(quizScript);
