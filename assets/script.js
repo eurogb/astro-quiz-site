@@ -68,19 +68,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (forecastBtn && zodiacSelect) {
     forecastBtn.addEventListener("click", function () {
-      const sign = zodiacSelect.value;
-      if (!sign) return;
+  const sign = zodiacSelect.value;
+  if (!sign) return;
 
-      document.getElementById("loading").style.display = "block";
-      document.getElementById("forecast").style.display = "none";
+  // Show loading
+  document.getElementById("loading").style.display = "block";
+  document.getElementById("forecast").style.display = "none";
 
-      setTimeout(function () {
-        document.getElementById("loading").style.display = "none";
-        document.getElementById("forecast").style.display = "block";
-        document.getElementById("theme").textContent = `Your cosmic theme for ${sign}`;
-        document.getElementById("forecast-text").textContent = `✨ The stars whisper secrets for ${sign}...`;
-      }, 1500);
-    });
-  }
+  setTimeout(function () {
+    document.getElementById("loading").style.display = "none";
+    document.getElementById("forecast").style.display = "block";
+    document.getElementById("theme").textContent = `Your cosmic theme for ${sign}`;
+
+    // ✅ INSERT THIS LINE HERE
+    const forecast = horoscopes[sign];
+    document.getElementById("forecast-text").textContent = forecast || "✨ The stars whisper secrets for you...";
+  }, 1500);
 });
 
