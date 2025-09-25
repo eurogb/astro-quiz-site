@@ -8,20 +8,70 @@ body {
   margin: 0;
 }
 
-/* 🎨 Forecast form & output */
-select {
-  padding: 10px;
+h2 {
+  font-size: 2em;
+  color: #ffd700;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 5px #000;
+}
+
+/* 🌠 Quiz Container */
+#quiz {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+#themeTitle {
+  font-size: 1.3em;
+  color: #87cefa;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#question {
+  font-size: 1.4em;
+  margin-bottom: 20px;
+  color: #f0f0f5;
+}
+
+#answers button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px 20px;
   font-size: 1.1em;
   border-radius: 8px;
   border: none;
-  background-color: #333;
-  color: #fff;
-  margin-bottom: 20px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  background-color: #ffd700;
+  color: #1e1e2f;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
-button {
-  padding: 10px 20px;
+#answers button:hover {
+  background-color: #ffcc00;
+}
+
+#result {
+  font-size: 1.5em;
+  color: #ffd700;
+  margin-top: 30px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+#restartBtn,
+#partnerBtn {
+  margin-top: 20px;
+  padding: 12px 24px;
   font-size: 1.1em;
   border-radius: 8px;
   border: none;
@@ -31,62 +81,82 @@ button {
   transition: background-color 0.3s ease;
 }
 
-button:hover {
+#restartBtn:hover,
+#partnerBtn:hover {
   background-color: #ffcc00;
 }
 
-#output {
-  display: none;
-  margin-top: 30px;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-  max-width: 600px;
-  margin: 0 auto;
+/* 🧩 Extra Actions */
+#extraActions button {
+  margin: 10px 5px;
 }
 
-/* 📱 Mobile buttons full-width */
-@media (max-width: 768px) {
-  .form-row button,
-  #output button {
-    width: 100%;
-    margin: 10px 0;
-  }
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap;
 }
 
-/* 📰 Ezoic ad placeholders */
-#ezoic-pub-ad-placeholder-101,
-#ezoic-pub-ad-placeholder-102,
-#ezoic-pub-ad-placeholder-103 {
-  margin: 20px 0;
+.action-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 1.1em;
+  border-radius: 8px;
+  background-color: #ffd700;
+  color: #1e1e2f;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-/* 🌐 Header & Nav */
+.action-btn:hover {
+  background-color: #ffcc00;
+}
+
+/* 🌐 Header & Navigation */
 .site-header {
   background-color: #2c2c3e;
   border-bottom: 2px solid #ffd700;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   position: relative;
-  padding: 20px;
+  padding-bottom: 10px;
+}
+
+.site-header h1 {
+  font-size: 1.8em;
+  color: #ffd700;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  text-shadow: 1px 1px 5px #000;
+  animation: titleGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+  from { text-shadow: 0 0 5px #ffd700; }
+  to { text-shadow: 0 0 15px #ffd700; }
+}
+
+.header-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .header-spacer {
   height: 60px;
 }
 
-.site-header h1 {
-  margin: 0;
-  font-size: 1.8em;
-  color: #ffd700;
-  text-align: center;
-}
-
 .subtitle {
+  display: block;
   font-size: 1.2em;
   color: #87cefa;
   margin-top: 10px;
   font-style: italic;
+  text-shadow: 1px 1px 3px #000;
 }
 
 .top-controls {
@@ -95,55 +165,78 @@ button:hover {
   right: 10px;
   display: flex;
   gap: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 10px;
+  border-radius: 8px;
+  z-index: 1000;
 }
 
-.lang-btn,
-.menu-icon {
+.lang-btn {
   background-color: #ffd700;
   color: #1e1e2f;
   padding: 8px 16px;
-  font-size: 1em;
-  height: 40px;
-  display: flex;
-  align-items: center;
   border-radius: 6px;
-  border: none;
-  cursor: pointer;
+  text-decoration: none;
+  font-weight: bold;
   transition: background-color 0.3s ease;
 }
 
-.lang-btn:hover,
-.menu-icon:hover {
+.lang-btn:hover {
   background-color: #ffcc00;
 }
 
+.main-nav {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.main-nav a {
+  color: #87cefa;
+  text-decoration: none;
+  font-size: 1.1em;
+  transition: color 0.3s ease;
+}
+
+.main-nav a:hover {
+  color: #ffd700;
+}
+
 .menu-icon {
-  font-size: 1.2em;
+  font-size: 1.5em;
+  background: none;
+  border: none;
+  color: #ffd700;
+  cursor: pointer;
+  animation: pulse 2s infinite ease-in-out;
 }
 
-/* ✨ Glow animation on logo */
-@keyframes glow {
-  0% {
-    filter: drop-shadow(0 0 2px #ffd700);
-  }
-  50% {
-    filter: drop-shadow(0 0 8px #ffd700);
-  }
-  100% {
-    filter: drop-shadow(0 0 2px #ffd700);
-  }
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }
 
+/* 🌙 Floating Logo */
 .floating-logo {
   position: absolute;
   top: 10px;
   left: 10px;
   height: 40px;
-  animation: glow 4s ease-in-out infinite alternate;
+  width: auto;
+  z-index: 1000;
   pointer-events: none;
+  animation: glow 2s ease-in-out infinite alternate;
 }
 
-/* 🎭 Dropdown menu hidden by default */
+@keyframes glow {
+  from { filter: drop-shadow(0 0 2px #ffd700); }
+  to { filter: drop-shadow(0 0 8px #ffd700); }
+}
+
+/* 🎭 Dropdown Menu */
 .menu-links {
   opacity: 0;
   max-height: 0;
@@ -151,38 +244,120 @@ button:hover {
   transition: opacity 0.4s ease, max-height 0.4s ease;
   list-style: none;
   padding: 0;
-  margin: 20px 0 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 15px;
+  margin-top: 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-/* 📏 Desktop: show menu inline */
-@media (min-width: 768px) {
-  .menu-links {
-    opacity: 1 !important;
-    max-height: none !important;
-    overflow: visible;
-    flex-direction: row;
-    justify-content: center;
-    gap: 30px;
-    background: none;
-    position: static;
-    margin-top: 0;
-  }
+.menu-links.show {
+  opacity: 1;
+  max-height: 500px;
+  background: rgba(255, 255, 255, 0.05);
 }
 
-/* 📲 WhatsApp icon */
+.menu-links li a,
+.menu-links li button {
+  color: #87cefa;
+  background: none;
+  border: none;
+  font-size: 1.1em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.menu-links li a:hover,
+.menu-links li button:hover {
+  color: #ffd700;
+}
+
+/* 📲 WhatsApp Button */
 .whatsapp-icon {
   font-size: 1.1em;
-  color: #25d366;
-  padding: 6px 10px;
+  color: #25D366;
   background: none;
   border: none;
   cursor: pointer;
+  padding: 6px 10px;
 }
 
 .whatsapp-icon:hover {
   color: #1ebe57;
+}
+
+/* 🌍 Footer */
+.site-footer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #999;
+  margin-top: 40px;
+  padding: 20px 10px;
+}
+
+.site-footer a {
+  display: block;
+  margin-top: 8px;
+  color: #87cefa;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.site-footer a:hover {
+  color: #ffd700;
+}
+
+/* 📱 Mobile Adjustments */
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 1.6em;
+  }
+
+  #question {
+    font-size: 1.2em;
+  }
+
+  #answers button {
+    font-size: 1em;
+    padding: 10px;
+  }
+
+  #result {
+    font-size: 1.3em;
+    padding: 15px;
+  }
+
+  #restartBtn {
+    width: 100%;
+    font-size: 1em;
+  }
+
+  .site-header h1 {
+    font-size: 1.6em;
+    padding: 0 10px;
+    width: 100%;
+    box-sizing: border-box;
+    text-shadow: none;
+  }
+
+  .menu-links {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .menu-links.show {
+    display: flex;
+  }
 }
