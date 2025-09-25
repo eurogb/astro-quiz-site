@@ -4,49 +4,44 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Your Daily Horoscope</title>
-  <link
-    rel="stylesheet"
-    href="https://eurogb.github.io/astro-quiz-site/assets/style.css"
-  />
+  <link rel="stylesheet" href="https://eurogb.github.io/astro-quiz-site/assets/style.css" />
 </head>
 <body>
-  <!-- Header injected by script.js -->
+
+  <!-- Header will be injected by script.js -->
 
   <div id="ezoic-pub-ad-placeholder-101"></div>
 
   <main>
-    <div id="forecastForm">
-      <div class="form-row">
-        <select id="zodiacSelect">
-          <option value="">🔍 Choose your sign</option>
-          <option value="aries">♈ Aries</option>
-          <option value="taurus">♉ Taurus</option>
-          <option value="gemini">♊ Gemini</option>
-          <option value="cancer">♋ Cancer</option>
-          <option value="leo">♌ Leo</option>
-          <option value="virgo">♍ Virgo</option>
-          <option value="libra">♎ Libra</option>
-          <option value="scorpio">♏ Scorpio</option>
-          <option value="sagittarius">♐ Sagittarius</option>
-          <option value="capricorn">♑ Capricorn</option>
-          <option value="aquarius">♒ Aquarius</option>
-          <option value="pisces">♓ Pisces</option>
-        </select>
-        <button id="forecastBtn" type="button">🔮 See Your Forecast</button>    
-      </div>
-    </div>
+    <label for="zodiac">Choose your sign:</label>
+    <select id="zodiac">
+      <option value="">--Select--</option>
+      <option value="aries">Aries</option>
+      <option value="taurus">Taurus</option>
+      <option value="gemini">Gemini</option>
+      <option value="cancer">Cancer</option>
+      <option value="leo">Leo</option>
+      <option value="virgo">Virgo</option>
+      <option value="libra">Libra</option>
+      <option value="scorpio">Scorpio</option>
+      <option value="sagittarius">Sagittarius</option>
+      <option value="capricorn">Capricorn</option>
+      <option value="aquarius">Aquarius</option>
+      <option value="pisces">Pisces</option>
+    </select>
+    <button id="see-forecast">See Your Forecast</button>
 
-    <div id="output" style="display:none;">
+    <div id="ezoic-pub-ad-placeholder-102"></div>
+
+    <div id="loading" style="display:none;">🔮 Reading the stars…</div>
+
+    <div id="forecast" style="display:none;">
       <h2 id="theme"></h2>
       <p id="forecast-text"></p>
 
       <button id="check-again">🔁 Check another sign</button>
-      <button onclick="location.href='/astro-quiz-site/en/quiz-15-Questions/'">
-        🧠 Astro Quiz – 15 Questions
-      </button>
-      <button onclick="location.href='/astro-quiz-site/en/yourmatch/'">
-        💘 Your Perfect Partner
-      </button>
+      <button onclick="location.href='/en/quiz-15-Questions/'">🧠 Astro Quiz – 15 Questions</button>
+      <button onclick="location.href='/en/yourmatch/'">💘 Your Perfect Partner</button>
 
       <div style="margin-top: 20px;">
         <button onclick="shareWhatsApp()">📲 Share on WhatsApp</button>
@@ -54,14 +49,46 @@
     </div>
   </main>
 
-  <div id="ezoic-pub-ad-placeholder-102"></div>
   <div id="ezoic-pub-ad-placeholder-103"></div>
 
-  <!-- Footer injected by script.js -->
+  <!-- Footer will be injected by script.js -->
+
   <script src="horoscope.js"></script>
-  <script
-    src="https://eurogb.github.io/astro-quiz-site/assets/script.js"
-    defer
-  ></script>
+  <script>
+    const today = new Date().toISOString().split("T")[0];
+    const zodiacSelect = document.getElementById("zodiac");
+    const seeBtn = document.getElementById("see-forecast");
+    const forecastDiv = document.getElementById("forecast");
+    const themeEl = document.getElementById("theme");
+    const textEl = document.getElementById("forecast-text");
+    const loadingEl = document.getElementById("loading");
+
+    seeBtn.onclick = () => {
+      const sign = zodiacSelect.value;
+      if (!sign || !horoscopes[today]) return alert("Please select a valid sign.");
+      loadingEl.style.display = "block";
+      setTimeout(() => {
+        loadingEl.style.display = "none";
+        forecastDiv.style.display = "block";
+        themeEl.innerText = `🌌 Theme: ${horoscopes[today].theme}`;
+        textEl.innerText = horoscopes[today][sign];
+      }, 800);
+    };
+
+    document.getElementById("check-again").onclick = () => {
+      forecastDiv.style.display = "none";
+      zodiacSelect.value = "";
+    };
+
+    function shareWhatsApp() {
+      const sign = zodiacSelect.value;
+      if (!sign || !horoscopes[today]) return;
+      const message = `🌟 My daily horoscope for ${sign}: ${horoscopes[today][sign]} — Theme: ${horoscopes[today].theme}`;
+      const url = "https://www.lfbuyer.com/en/forecast/";
+      window.open(`https://wa.me/?text=${encodeURIComponent(message + " " + url)}`, "_blank");
+    }
+  </script>
+
+  <script src="../../assets/script.js" defer></script>
 </body>
 </html>
