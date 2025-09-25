@@ -6,15 +6,14 @@
   <meta http-equiv="Content-Language" content="en" />
   <title>Dnevni horoskop</title>
 
-  <!-- Global CSS -->
+  <!-- Global stylesheet -->
   <link
     rel="stylesheet"
     href="/astro-quiz-site/assets/style.css"
   />
 </head>
 <body>
-  <!-- Header injected -->
-
+  <!-- Header will be injected here -->
   <div id="ezoic-pub-ad-placeholder-101"></div>
 
   <h1>🌟 Dnevna Doza Zabave</h1>
@@ -33,7 +32,8 @@
     <option value="aquarius">♒️ Vodenjak</option>
     <option value="pisces">♓️ Ribe</option>
   </select>
-  <button onclick="showForecast()" type="button">
+
+  <button type="button" onclick="showForecast()">
     🔮 Pogledaj Horoskop
   </button>
 
@@ -42,31 +42,34 @@
   <div id="output"></div>
 
   <div>
-    <a href="https://www.lfbuyer.com/hr/" target="_blank"
-      ><button type="button">🌐 Oglasnik LF BUYER.COM</button></a
-    >
-    <a href="https://xysamja-commits.github.io/astro-kviz/" target="_blank"
-      ><button type="button">🔮 Astro Kviz – 15 pitanja</button></a
-    >
+    <a href="https://www.lfbuyer.com/hr/" target="_blank">
+      <button type="button">🌐 Oglasnik LF BUYER.COM</button>
+    </a>
+    <a href="https://xysamja-commits.github.io/astro-kviz/" target="_blank">
+      <button type="button">🔮 Astro Kviz – 15 pitanja</button>
+    </a>
   </div>
 
   <div id="ezoic-pub-ad-placeholder-103"></div>
 
-  <!-- Footer injected -->
+  <!-- Footer will be injected here -->
 
   <script src="horoskop.js"></script>
   <script src="/astro-quiz-site/assets/script.js"></script>
   <script>
     function showForecast() {
       const sign = document.getElementById("signSelect").value;
-      const day = new Date().toISOString().split("T")[0];
-      const f = horoscopes[day]?.[sign];
-      const th = horoscopes[day]?.theme;
+      const today = new Date().toISOString().split("T")[0];
+      const f = horoscopes[today]?.[sign];
+      const th = horoscopes[today]?.theme;
       const out = document.getElementById("output");
+
       if (f) {
         out.innerHTML = `<h2>Tema: ${th}</h2><p>${f}</p>`;
+        out.style.display = "block";
       } else {
-        out.innerText = "No forecast available for today.";
+        out.textContent = "No forecast available for today.";
+        out.style.display = "block";
       }
     }
   </script>
