@@ -1,282 +1,286 @@
 /* 🌌 Base Styles */
 body {
-  background: linear-gradient(to right, #1e1e2f, #2c2c3e);
-  color: #f0f0f5;
-  font-family: 'Segoe UI', sans-serif;
-  text-align: center;
-  padding: 40px;
-  margin: 0;
+    background: linear-gradient(to right, #1e1e2f, #2c2c3e);
+    color: #f0f0f5;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    padding: 40px;
+    margin: 0;
 }
 
 h2 {
-  font-size: 2em;
-  color: #ffd700;
-  margin-bottom: 20px;
-  text-shadow: 1px 1px 5px #000;
+    font-size: 2em;
+    color: #ffd700;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 5px #000;
 }
 
 /* 🌠 Forecast Form */
 #forecastForm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
 }
 
 .form-row {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 100%;
-  max-width: 700px;
-  margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 #zodiacSelect,
 #forecastBtn {
-  width: 100%;
-  padding: 12px;
-  font-size: 1.1em;
-  border-radius: 8px;
-  border: none;
-  box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1em;
+    border-radius: 8px;
+    border: none;
+    box-sizing: border-box;
 }
 
 #zodiacSelect {
-  background-color: #333;
-  color: #fff;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-  margin-bottom: 10px;
+    background-color: #333;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    margin-bottom: 10px;
 }
 
 #forecastBtn {
-  background-color: #ffd700;
-  color: #1e1e2f;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    background-color: #ffd700;
+    color: #1e1e2f;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 #forecastBtn:hover {
-  background-color: #ffcc00;
+    background-color: #ffcc00;
 }
 
 /* 🌠 Output */
 #output {
-  margin-top: 30px;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-  max-width: 600px;
-  margin: 0 auto;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 /* 🌐 Header & Navigation */
 .site-header {
-  background-color: #2c2c3e;
-  border-bottom: 2px solid #ffd700;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  position: relative;
-  padding: 20px;
+    background-color: #2c2c3e;
+    border-bottom: 2px solid #ffd700;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    padding: 20px;
 }
 
 .header-spacer {
-  height: 60px;
+    height: 60px;
 }
 
 .site-header h1 {
-  font-size: 1.8em;
-  color: #ffd700;
-  margin: 0 auto;
-  text-align: center;
-  width: 100%;
-  /* remove glow */
-  animation: none;
-  text-shadow: none;
+    font-size: 1.8em;
+    color: #ffd700;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    /* remove glow */
+    animation: none;
+    text-shadow: none;
 }
 
 .subtitle {
-  display: block;
-  font-size: 1.2em;
-  color: #87cefa;
-  margin-top: 10px;
-  font-style: italic;
-  text-shadow: 1px 1px 3px #000;
+    display: block;
+    font-size: 1.2em;
+    color: #87cefa;
+    margin-top: 10px;
+    font-style: italic;
+    text-shadow: 1px 1px 3px #000;
 }
 
 @keyframes titleGlow {
-  from { text-shadow: 0 0 5px #ffd700; }
-  to { text-shadow: 0 0 15px #ffd700; }
+    from { text-shadow: 0 0 5px #ffd700; }
+    to   { text-shadow: 0 0 15px #ffd700; }
 }
 
 /* 🌙 Floating Logo */
 .floating-logo {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  height: 40px;
-  width: auto;
-  z-index: 1000;
-  pointer-events: none;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    height: 40px;
+    width: auto;
+    z-index: 1000;
+    pointer-events: none;
 }
 
 /* ☰ & ⚙️ Top Controls */
 .top-controls {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  display: flex;
-  gap: 10px;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 6px 10px;
-  border-radius: 8px;
-  z-index: 1000;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 6px 10px;
+    border-radius: 8px;
+    z-index: 1000;
 }
 
+/* Shared button styles (lang-btn & menu-icon) */
 .lang-btn,
 .menu-icon {
-  background-color: #ffd700;
-  color: #1e1e2f;
-  padding: 4px 10px;
-  font-size: 1em;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  border-radius: 6px;
-  border: none;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    background-color: #ffd700;
+    color: #1e1e2f;
+    padding: 4px 10px;
+    font-size: 1em;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
+/* Hover state for both buttons */
 .lang-btn:hover,
 .menu-icon:hover {
-  background-color: #ffcc00;
+    background-color: #ffcc00;
 }
 
 /* 🎭 Dropdown Menu */
 .menu-links {
-  opacity: 0;
-  max-height: 0;
-  overflow: hidden;
-  transition: opacity 0.4s ease, max-height 0.4s ease;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  margin-top: 20px;
-  width: 100%;
-  box-sizing: border-box;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.4s ease, max-height 0.4s ease;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .menu-links.show {
-  opacity: 1;
-  max-height: 500px;
-  background: rgba(255, 255, 255, 0.05);
+    opacity: 1;
+    max-height: 500px;
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .menu-links li a,
 .menu-links li button {
-  color: #87cefa;
-  background: none;
-  border: none;
-  font-size: 1.1em;
-  text-decoration: none;
-  cursor: pointer;
-  transition: color 0.3s ease;
+    color: #87cefa;
+    background: none;
+    border: none;
+    font-size: 1.1em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
 
 .menu-links li a:hover,
 .menu-links li button:hover {
-  color: #ffd700;
+    color: #ffd700;
 }
 
 /* 📱 Mobile Adjustments */
 @media (max-width: 768px) {
-  body {
-    padding: 20px;
-  }
+    body {
+        padding: 20px;
+    }
 
-  h2 {
-    font-size: 1.6em;
-  }
+    h2 {
+        font-size: 1.6em;
+    }
 
-  .lang-btn,
-  .menu-icon {
-    padding: 6px 10px;
-    font-size: 0.9em;
-    height: auto;
-  }
+    .lang-btn,
+    .menu-icon {
+        padding: 6px 10px;
+        font-size: 0.9em;
+        height: auto;
+    }
 
-  #forecastBtn {
-    font-size: 1em;
-    padding: 12px;
-    width: 100%;
-  }
+    #forecastBtn {
+        font-size: 1em;
+        padding: 12px;
+        width: 100%;
+    }
 
-  #zodiacSelect {
-    font-size: 1em;
-    padding: 10px;
-    width: 100%;
-  }
+    #zodiacSelect {
+        font-size: 1em;
+        padding: 10px;
+        width: 100%;
+    }
 }
 
 /* 🚀 Main Nav (desktop) */
 .main-nav {
-  margin-top: 15px;
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
 }
 
 .main-nav a {
-  color: #87cefa;
-  text-decoration: none;
-  font-size: 1.1em;
-  transition: color 0.3s ease;
+    color: #87cefa;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
 }
 
 .main-nav a:hover {
-  color: #ffd700;
+    color: #ffd700;
 }
 
 /* ☎️ WhatsApp icon */
 .whatsapp-icon {
-  font-size: 1.1em;
-  color: #25D366;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 6px 10px;
-  transition: color 0.3s ease;
+    font-size: 1.1em;
+    color: #25D366;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px 10px;
+    transition: color 0.3s ease;
 }
 
 .whatsapp-icon:hover {
-  color: #1ebe57;
+    color: #1ebe57;
 }
-@media (min-width: 769px) {
-  /* Pulsar keyframes */
-  @keyframes pulsar {
-    0% {
-      transform: scale(1);
-      box-shadow: 0 0 5px #ffd700;
-    }
-    50% {
-      transform: scale(1.1);
-      box-shadow: 0 0 15px #ffd700;
-    }
-    100% {
-      transform: scale(1);
-      box-shadow: 0 0 5px #ffd700;
-    }
-  }
 
-  /* Make menu-icon match lang-btn */
-  .menu-icon {
+/* -------------------------------------------------
+   NEW SNIPPETS – added per your request
+------------------------------------------------- */
+
+/* Desktop menu overrides (≥769px) */
+@media (min-width: 769px) {
+    .menu-links {
+        opacity: 1 !important;
+        max-height: none !important;
+        overflow: visible;
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+        background: none;
+        position: static;
+    }
+}
+
+/* Updated menu‑icon styling (desktop) */
+.menu-icon {
     background-color: #ffd700;
     color: #1e1e2f;
     padding: 4px 10px;
@@ -288,17 +292,21 @@ h2 {
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    /* Pulsar animation */
-    animation: pulsar 2s ease-in-out infinite;
-  }
-
-  .menu-icon:hover {
-    background-color: #ffcc00;
-  }
-
-  /* Also animate the logo */
-  .floating-logo {
-    animation: pulsar 2s ease-in-out infinite alternate;
-  }
 }
 
+/* Hover state already defined above – retained for consistency */
+.menu-icon:hover {
+    background-color: #ffcc00;
+}
+
+/* Pulsating animation */
+@keyframes pulsar {
+    0%   { transform: scale(1);    box-shadow: 0 0 3px #ffd700; }
+    50%  { transform: scale(1.05); box-shadow: 0 0 10px #ffd700; }
+    100% { transform: scale(1);    box-shadow: 0 0 3px #ffd700; }
+}
+
+/* Apply pulsar to the floating logo (only the logo should pulse) */
+.floating-logo {
+    animation: pulsar 4s ease-in-out infinite alternate;
+}
