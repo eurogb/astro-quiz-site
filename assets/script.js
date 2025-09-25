@@ -36,11 +36,12 @@ fetch(`/astro-quiz-site/assets/header-${lang}.html`)
   })
   .catch(console.error);
 
-// Inject footer
+// 📦 Inject footer
 fetch(`/astro-quiz-site/assets/footer-${lang}.html`)
-  .then(r => r.text())
-  .then(html => document.body.insertAdjacentHTML("beforeend", html))
-  .catch(console.error);
+  .then(res => res.text())
+  .then(html => {
+    document.body.insertAdjacentHTML('beforeend', html);
+  });
 
 // 📦 Inject extra actions
 fetch(`/astro-quiz-site/assets/extra-actions-${lang}.html`)
@@ -60,6 +61,11 @@ fetch(`/astro-quiz-site/assets/extra-actions-${lang}.html`)
       });
     }
   });
+
+// 📥 Load correct question set
+const questionFile = lang === 'hr'
+  ? '/astro-quiz-site/hr/astro-kviz-15-pitanja/questions.js'
+  : '/astro-quiz-site/en/quiz-15-Questions/questions.js';
 
 // Inject extra quiz actions
 fetch(`/astro-quiz-site/assets/extra-actions-${lang}.html`)
