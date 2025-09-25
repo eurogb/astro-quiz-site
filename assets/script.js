@@ -54,35 +54,51 @@ const script = document.createElement('script');
 script.src = questionFile;
 script.onload = () => {
   if (typeof allQuizSets !== 'undefined') {
-    startQuiz?.(); // ✅ Start only after questions are loaded
+    startQuiz?.();
   } else {
     console.error("Quiz data not found.");
   }
 };
 document.head.appendChild(script);
 
-// 🔮 Forecast button logic
+// 🔮 Forecast logic
 document.addEventListener("DOMContentLoaded", function () {
   const forecastBtn = document.getElementById("forecastBtn");
   const zodiacSelect = document.getElementById("zodiacSelect");
+  const forecastDiv = document.getElementById("forecast");
+  const themeEl = document.getElementById("theme");
+  const textEl = document.getElementById("forecast-text");
+  const loadingEl = document.getElementById("loading");
 
-  if (forecastBtn && zodiacSelect) {
-    forecastBtn.addEventListener("click", function () {
-  const sign = zodiacSelect.value;
-  if (!sign) return;
+  forecastBtn?.addEventListener("click", function () {
+    const sign = zodiacSelect.value;
+    const today = new Date().toISOString().split("T")[0];
 
-  // Show loading
-  document.getElementById("loading").style.display = "block";
-  document.getElementById("forecast").style.display = "none";
+    if (!sign || !horoscopes[today]) return alert("Please select a valid sign.");
 
-  setTimeout(function () {
-    document.getElementById("loading").style.display = "none";
-    document.getElementById("forecast").style.display = "block";
-    document.getElementById("theme").textContent = `Your cosmic theme for ${sign}`;
+    loadingEl.style.display = "block";
+    forecastDiv.style.display = "none";
 
-    // ✅ INSERT THIS LINE HERE
-    const forecast = horoscopes[sign];
-    document.getElementById("forecast-text").textContent = forecast || "✨ The stars whisper secrets for you...";
-  }, 1500);
+    setTimeout(() => {
+      loadingEl.style.display = "none";
+      forecastDiv.style.display = "block";
+      themeEl.textContent = `🌌 Theme: ${horoscopes[today].theme}`;
+      textEl.textContent = horoscopes[today][sign];
+    }, 800);
+  });
+
+  document.getElementById("check-again")?.addEventListener("click", () => {
+    forecastDiv.style.display = "none";
+    zodiacSelect.value = "";
+  });
+
+  window.shareWhatsApp = function () {
+    const sign = zodiacSelect.value;
+    const today = new Date().toISOString().split("T")[0];
+    if (!sign || !horoscopes[today]) return;
+
+    const message = `🌟 My daily horoscope for ${sign}: ${horoscopes[today][sign]} — Theme: ${horoscopes[today].theme}`;
+    const url = "https://www.lfbuyer.com/en/forecast/";
+    window.open(`https://wa.me/?text=${encodeURIComponent(message + " " + url)}`, "_blank");
+  };
 });
-
