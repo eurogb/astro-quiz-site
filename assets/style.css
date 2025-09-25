@@ -33,7 +33,7 @@ h2 {
 }
 
 #forecastBtn {
-  padding: 10px 20px;
+  padding: 12px 24px; /* match check-again */
   font-size: 1.1em;
   border-radius: 8px;
   border: none;
@@ -45,6 +45,21 @@ h2 {
 
 #forecastBtn:hover {
   background-color: #ffcc00;
+}
+.lang-btn img {
+  height: 24px;
+  width: auto;
+  vertical-align: middle;
+}
+@media (max-width: 768px) {
+  .lang-btn {
+    padding: 6px 10px;
+    font-size: 0.9em;
+  }
+
+  .lang-btn img {
+    height: 20px; /* match logo height */
+  }
 }
 
 /* 🌠 Quiz Container */
