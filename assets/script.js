@@ -18,7 +18,7 @@ fetch(`${base}/assets/header-${lang}.html`)
       });
     }
 
-    // 📲 WhatsApp share button inside header nav
+    // 📲 WhatsApp share in header
     const shareBtn = document.getElementById("whatsappShareBtn");
     if (shareBtn) {
       shareBtn.addEventListener("click", () => {
@@ -26,8 +26,10 @@ fetch(`${base}/assets/header-${lang}.html`)
           en: "Check out your astro quiz result! 🌟 https://eurogb.github.io/astro-quiz-site/en/",
           hr: "Pogledaj svoj astrološki rezultat! 🌟 https://eurogb.github.io/astro-quiz-site/hr/"
         };
-        const message = encodeURIComponent(messages[lang]);
-        window.open(`https://wa.me/?text=${message}`, '_blank');
+        window.open(
+          `https://wa.me/?text=${encodeURIComponent(messages[lang])}`,
+          '_blank'
+        );
       });
     }
   })
@@ -54,16 +56,13 @@ const questionFile = lang === 'hr'
   ? `${base}/hr/astro-kviz-15-pitanja/questions.js`
   : `${base}/en/quiz-15-Questions/questions.js`;
 
-const script = document.createElement('script');
-script.src = questionFile;
-script.onload = () => {
-  if (typeof allQuizSets !== 'undefined') {
-    startQuiz?.();
-  } else {
-    console.error("Quiz data not found.");
-  }
+const quizScript = document.createElement('script');
+quizScript.src = questionFile;
+quizScript.onload = () => {
+  if (typeof allQuizSets !== 'undefined') startQuiz?.();
+  else console.error("Quiz data not found.");
 };
-document.head.appendChild(script);
+document.head.appendChild(quizScript);
 
 // 🔮 Forecast logic
 document.addEventListener("DOMContentLoaded", () => {
@@ -102,8 +101,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const sign = zodiacSelect.value;
     const today = new Date().toISOString().split("T")[0];
     if (!sign || !horoscopes[today]) return;
-    const message = `🌟 My daily horoscope for ${sign}: ${horoscopes[today][sign]} — Theme: ${horoscopes[today].theme}`;
+    const message = `🌟 My daily horoscope for ${sign}: ${
+      horoscopes[today][sign]
+    } — Theme: ${horoscopes[today].theme}`;
     const url = "https://www.lfbuyer.com/en/forecast/";
-    window.open(`https://wa.me/?text=${encodeURIComponent(message + " " + url)}`, "_blank");
+    window.open(
+      `https://wa.me/?text=${encodeURIComponent(message + " " + url)}`,
+      "_blank"
+    );
   };
 });
