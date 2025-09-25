@@ -1,4 +1,4 @@
-// Inject global stylesheet
+// Inject global stylesheet if missing
 const styleHref = "/astro-quiz-site/assets/style.css";
 if (!document.querySelector(`link[href="${styleHref}"]`)) {
   const link = document.createElement("link");
@@ -13,8 +13,8 @@ const lang = path.includes("/hr/") ? "hr" : "en";
 
 // Inject header
 fetch(`/astro-quiz-site/assets/header-${lang}.html`)
-  .then((r) => r.text())
-  .then((html) => {
+  .then(r => r.text())
+  .then(html => {
     document.body.insertAdjacentHTML("afterbegin", html);
     // Menu toggle
     const t = document.getElementById("menuToggle");
@@ -38,14 +38,14 @@ fetch(`/astro-quiz-site/assets/header-${lang}.html`)
 
 // Inject footer
 fetch(`/astro-quiz-site/assets/footer-${lang}.html`)
-  .then((r) => r.text())
-  .then((html) => document.body.insertAdjacentHTML("beforeend", html))
+  .then(r => r.text())
+  .then(html => document.body.insertAdjacentHTML("beforeend", html))
   .catch(console.error);
 
-// Inject extra actions
+// Inject extra quiz actions
 fetch(`/astro-quiz-site/assets/extra-actions-${lang}.html`)
-  .then((r) => r.text())
-  .then((html) => document.getElementById("quiz")?.insertAdjacentHTML("beforeend", html))
+  .then(r => r.text())
+  .then(html => document.getElementById("quiz")?.insertAdjacentHTML("beforeend", html))
   .catch(console.error);
 
 // Load quiz questions
