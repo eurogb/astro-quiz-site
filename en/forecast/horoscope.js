@@ -42,8 +42,8 @@ gemini:
 "Flirtation comes naturally to you, Gemini, but today’s theme of love asks you to dive beneath the playful surface. Curiosity is your gift—use it to ask a soulful question that sparks deeper connection. Reflection helps you recognize that while fun banter creates sparks, true intimacy grows from shared understanding. Think about the people who make your heart race—what do you truly want to know about them? Practice listening as much as talking. Today is a chance to move beyond lighthearted charm into meaningful exchange. By daring to explore someone’s inner world, you’ll create bonds that feel both exciting and enduring.",
 
 cancer:
-"Your warmth is magnetic, Cancer, and today’s theme of love highlights your emotional depth as your greatest strength. Don’t hide your feelings behind caution—they are the very reason people are drawn to you. Reflection invites you to consider where you’ve been protecting your heart too much. Vulnerability is scary, but it’s also where real connection thrives. Express your affection through small but sincere acts—whether it’s words of care, physical touch, or simply showing up when someone needs you. Your ability to nurture is a powerful gift, but love grows even more when you allow yourself to be nurtured in return."
-,
+"Your warmth is magnetic, Cancer, and today’s theme of love highlights your emotional depth as your greatest strength. Don’t hide your feelings behind caution—they are the very reason people are drawn to you. Reflection invites you to consider where you’ve been protecting your heart too much. Vulnerability is scary, but it’s also where real connection thrives. Express your affection through small but sincere acts—whether it’s words of care, physical touch, or simply showing up when someone needs you. Your ability to nurture is a powerful gift, but love grows even more when you allow yourself to be nurtured in return.",
+
 leo:
 "Passion runs high for you, Leo, and your natural fire makes love bold and exciting. Today encourages you to channel that passion into authentic connection, not just performance. Reflection helps you notice: are you expressing love to be admired, or to truly bond? Bold declarations and grand gestures are wonderful, but love thrives when both hearts feel seen. Ask your partner or crush what lights their fire, and share your own with equal honesty. When passion is balanced with mutual understanding, the flame grows steadier and brighter. Love today is about celebrating not just your brilliance but the shared glow of togetherness.",
 
@@ -55,7 +55,7 @@ libra:
 
 scorpio:
 "Intensity is your love language, Scorpio, and today invites you to reflect on how you channel it. Your emotions run deep, and when you share them openly, you create profound bonds. Love asks for truth, even if it shakes things up. Consider what truths you’ve been holding back. Reflection reveals that vulnerability in love isn’t about control but about trust. Let someone see your raw passion and fears—it may feel risky, but it strengthens intimacy. Your magnetic depth is irresistible, but it becomes even more transformative when you direct it toward openness, not just mystery. Love thrives in fearless honesty."
-,
+
 sagittarius:
 "Say yes to spontaneity, Sagittarius. For you, love is an adventure waiting to unfold. Reflection today asks: are you giving yourself permission to embrace romance with the same curiosity you bring to travel and exploration? Love doesn’t have to feel predictable—it can be an unfolding story full of surprises. Accept an unexpected invitation, plan a spontaneous date, or simply express your affection without overthinking. True intimacy for you is built on freedom and joy. Reflect on whether you’re making enough space for playfulness in your relationships. Love blossoms when it feels like an adventure you both choose every day.",
 
