@@ -1,94 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Daily Horoscope</title>
-  <link rel="stylesheet" href="https://eurogb.github.io/astro-quiz-site/assets/style.css" />
-</head>
-<body>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // 🧩 Basic fallback header and footer
+  const header = document.createElement("header");
+  header.innerHTML = `<h1>Your Daily Horoscope</h1>`;
+  document.body.insertBefore(header, document.body.firstChild);
 
-  <!-- Header will be injected by script.js -->
+  const footer = document.createElement("footer");
+  footer.innerHTML = `<p>&copy; ${new Date().getFullYear()} RIOGB j.d.o.o. All rights reserved.</p>`;
+  document.body.appendChild(footer);
 
-  <div id="ezoic-pub-ad-placeholder-101"></div>
+  // 🌐 Detect language from URL
+  const path = window.location.pathname;
+  const lang = path.includes('/hr/') ? 'hr' : 'en';
 
-  <main>
-    <label for="zodiac">Choose your sign:</label>
-    <select id="zodiac">
-      <option value="">--Select--</option>
-      <option value="aries">Aries</option>
-      <option value="taurus">Taurus</option>
-      <option value="gemini">Gemini</option>
-      <option value="cancer">Cancer</option>
-      <option value="leo">Leo</option>
-      <option value="virgo">Virgo</option>
-      <option value="libra">Libra</option>
-      <option value="scorpio">Scorpio</option>
-      <option value="sagittarius">Sagittarius</option>
-      <option value="capricorn">Capricorn</option>
-      <option value="aquarius">Aquarius</option>
-      <option value="pisces">Pisces</option>
-    </select>
-    <button id="see-forecast">See Your Forecast</button>
+  // 📦 Inject header
+  fetch(`/astro-quiz-site/assets/header-${lang}.html`)
+    .then(res => res.text())
+    .then(html => {
+      document.body.insertAdjacentHTML('afterbegin', html);
 
-    <div id="ezoic-pub-ad-placeholder-102"></div>
+      // ☰ Menu toggle
+      const toggle = document.getElementById("menuToggle");
+      const links = document.getElementById("menuLinks");
+      if (toggle && links) {
+        toggle.addEventListener("click", () => {
+          links.classList.toggle("show");
+        });
+      }
 
-    <div id="loading" style="display:none;">🔮 Reading the stars…</div>
+      // 📲 WhatsApp share button
+      const shareBtn = document.getElementById("whatsappShareBtn");
+      if (shareBtn) {
+        const messages = {
+          en: "Check out your astro quiz result! 🌟 https://eurogb.github.io/astro-quiz-site/en/",
+          hr: "Pogledaj svoj astrološki rezultat! 🌟 https://eurogb.github.io/astro-quiz-site/hr/"
+        };
+        shareBtn.addEventListener("click", () => {
+          const message = encodeURIComponent(messages[lang]);
+          window.open(`https://wa.me/?text=${message}`, '_blank');
+        });
+      }
+    });
 
-    <div id="forecast" style="display:none;">
-      <h2 id="theme"></h2>
-      <p id="forecast-text"></p>
+  // 📦 Inject footer
+  fetch(`/astro-quiz-site/assets/footer-${lang}.html`)
+    .then(res => res.text())
+    .then(html => {
+      document.body.insertAdjacentHTML('beforeend', html);
+    });
 
-      <button id="check-again">🔁 Check another sign</button>
-      <button onclick="location.href='/en/quiz-15-Questions/'">🧠 Astro Quiz – 15 Questions</button>
-      <button onclick="location.href='/en/yourmatch/'">💘 Your Perfect Partner</button>
+  // 📦 Inject extra actions (if #quiz exists)
+  fetch(`/astro-quiz-site/assets/extra-actions-${lang}.html`)
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('quiz')?.insertAdjacentHTML('beforeend', html);
+    });
 
-      <div style="margin-top: 20px;">
-        <button onclick="shareWhatsApp()">📲 Share on WhatsApp</button>
-      </div>
-    </div>
-  </main>
+  // 📥 Load correct question set
+  const questionFile = lang === 'hr'
+    ? '/astro-quiz-site/hr/astro-kviz-15-pitanja/questions.js'
+    : '/astro-quiz-site/en/quiz-15-Questions/questions.js';
 
-  <div id="ezoic-pub-ad-placeholder-103"></div>
-
-  <!-- Footer will be injected by script.js -->
-
-  <script src="horoscope.js"></script>
-  <script>
-    const today = new Date().toISOString().split("T")[0];
-    const zodiacSelect = document.getElementById("zodiac");
-    const seeBtn = document.getElementById("see-forecast");
-    const forecastDiv = document.getElementById("forecast");
-    const themeEl = document.getElementById("theme");
-    const textEl = document.getElementById("forecast-text");
-    const loadingEl = document.getElementById("loading");
-
-    seeBtn.onclick = () => {
-      const sign = zodiacSelect.value;
-      if (!sign || !horoscopes[today]) return alert("Please select a valid sign.");
-      loadingEl.style.display = "block";
-      setTimeout(() => {
-        loadingEl.style.display = "none";
-        forecastDiv.style.display = "block";
-        themeEl.innerText = `🌌 Theme: ${horoscopes[today].theme}`;
-        textEl.innerText = horoscopes[today][sign];
-      }, 800);
-    };
-
-    document.getElementById("check-again").onclick = () => {
-      forecastDiv.style.display = "none";
-      zodiacSelect.value = "";
-    };
-
-    function shareWhatsApp() {
-      const sign = zodiacSelect.value;
-      if (!sign || !horoscopes[today]) return;
-      const message = `🌟 My daily horoscope for ${sign}: ${horoscopes[today][sign]} — Theme: ${horoscopes[today].theme}`;
-      const url = "https://www.lfbuyer.com/en/forecast/";
-      window.open(`https://wa.me/?text=${encodeURIComponent(message + " " + url)}`, "_blank");
+  const script = document.createElement('script');
+  script.src = questionFile;
+  script.onload = () => {
+    if (typeof allQuizSets !== 'undefined') {
+      startQuiz?.(); // ✅ Start only after questions are loaded
+    } else {
+      console.error("Quiz data not found.");
     }
-  </script>
-
-  <script src="../../assets/script.js" defer></script>
-</body>
-</html>
+  };
+  document.head.appendChild(script);
+});
+</script>
