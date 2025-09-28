@@ -27,7 +27,7 @@ h2 {
   padding: 30px;
   background-color: rgba(255, 255, 255, 0.05);
   border-radius: 12px;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1), 0 4px 12px rgba(0, 0, 0, 0.2);
+box-shadow: 0 0 20px rgba(255, 255, 255, 0.1), 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 #themeTitle {
@@ -36,6 +36,17 @@ h2 {
   margin-bottom: 15px;
   text-transform: uppercase;
   letter-spacing: 1px;
+}
+#progressBox {
+  margin: 20px auto;
+  padding: 15px 20px;
+  max-width: 600px;
+  font-size: 1.1em;
+  color: #f0f0f5;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1), 0 4px 12px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
 
 #question {
@@ -207,36 +218,53 @@ h2 {
 </head>
 <body>
 
-  <div id="quiz">
-    <h2 style="text-align:center;">Vaš Idealan Partner</h2>
-    <div id="themeTitle"></div>
-    <div id="question"></div>
-    <div id="answers"></div>
-    
-<div id="result" style="display:none;"></div>
+<div id="quiz">
+  <h2 style="text-align:center;">Vaš Idealan Partner</h2>
 
-<div class="button-row" style="display:none;" id="resultActions">
-  <button id="restartBtn">🔄 Ponovno riješi kviz</button>
-  <a href="https://www.lfbuyer.com/hr/listing/postati-uspje%C5%A1an-influencer-na-dru%C5%A1tvenim-mre%C5%BEama/" target="_blank" id="partnerBtn" class="action-btn">💘 Oglasi</a>
-</div>
+  <!-- 🟨 Ad: Top of quiz -->
+  <div class="ezoic-ad" id="ezoic-pub-ad-1"></div>
 
+  <!-- 🧭 Quiz content -->
+  <div id="themeTitle"></div>
+  <div id="progressBox"></div>
+  <div id="question"></div>
+  <div id="answers"></div>
 
+  <!-- 🟨 Ad: Between questions and result -->
+  <div class="ezoic-ad" id="ezoic-pub-ad-2"></div>
 
+  <!-- 🎯 Result -->
+  <div id="result" style="display:none;"></div>
 
-
-   
-   <div id="extraActions" style="margin-top: 30px;">
-  <a href="https://www.lfbuyer.com/hr/zodijak/" target="_blank">
-    <button>🌐 Visit Our Website</button>
-  </a>
-  <a href="https://www.facebook.com/rio.lfbuyer/" target="_blank">
-    <button>👍 Give Us a Like on Facebook</button>
-  </a>
-  <button id="whatsappShareBtn" style="margin-top: 10px;">📲 Share Result on WhatsApp</button>
-</div>
-
-
+  <!-- 🔁 Result actions -->
+  <div class="button-row" style="display:none;" id="resultActions">
+    <button id="restartBtn">🔄 Ponovno riješi kviz</button>
+    <a href="https://www.lfbuyer.com/hr/listing/postati-uspje%C5%A1an-influencer-na-dru%C5%A1tvenim-mre%C5%BEama/"
+       target="_blank"
+       id="partnerBtn"
+       class="action-btn">💘 Oglasi</a>
   </div>
+
+  <!-- 🟨 Ad: Before extra actions -->
+  <div class="ezoic-ad" id="ezoic-pub-ad-3"></div>
+
+  <!-- 🌐 Extra actions -->
+  <div id="extraActions" style="margin-top: 30px;">
+    <a href="https://www.lfbuyer.com/zodiac/" target="_blank">
+      <button>🌐 Posjeti LFbuyer.com</button>
+    </a>
+    <a href="https://www.facebook.com/rio.lfbuyer/" target="_blank">
+      <button>👍 Lajkaj nas na Facebooku</button>
+    </a>
+    <button id="whatsappShareBtn" style="margin-top: 10px;">
+      📲 Proslijedi Kviz i Rezultat Putem WhatsAppa
+    </button>
+  </div>
+
+  <!-- 🟨 Ad: Bottom of quiz -->
+  <div class="ezoic-ad" id="ezoic-pub-ad-4"></div>
+</div>
+
 
 <script>
   // 🔁 Shuffle utility
@@ -253,9 +281,22 @@ h2 {
   let currentThemeIndex = 0;
   let currentQuestionIndex = 0;
   let scores = {};
+  let totalQuestions = 0;
+
+  // 💡 Motivational tips
+  const tips = [
+    "'Ponovno riješi kviz'- Jeste li znali da se kviz sastoji od pet kategorija, s po tri pitanja u svakoj? Svaki put kad ga riješite, pitanja se mijenjaju — otkrijte nove      nijanse svog astrološkog profila!",
+    "Jeste li znali da na LFbuyer.com postoji interaktivna igra za zabavu — simulacija nogometne sezone? Simuliraj tko će biti prvak u nogometu",
+    "Oglasite svoju tvrtku besplatno na LFbuyer.com — svaki korisnik kviza može vas otkriti klikom na 'Oglasi'.",
+    "Jeste li znali da se pomoću 'home staginga' kuće i stanovi prodaju čak 75% brže i po 25% višoj cijeni? Više o ovoj učinkovitoj tehnici pripreme nekretnina za prodaju saznajte na blogu LFbuyer.com . ",
+    "Klikom na 'Posjeti LFbuyer.com' možete besplatno oglasiti svoje proizvode, usluge ili poslovanje — i učiniti ih vidljivima svima koji riješavaju ovaj kviz.",
+    "Jeste li znali da je  LFbuyer  skraćenica od  'Looking For a buyer' – tj. tražim kupca...",
+    "Kliknite na 'Lajkaj nas na  Facebooku', zatim 'Prati', kako biste ostali u kontaktu s nama.",
+    "Jeste li znali da pomoću opcije 'Proslijedi Kviz i Rezultat Putem WhatsAppa' možete poslati kviz i svoj rezultat kao poruku osobi koja vam je draga?" // ← final tip
+  ];
 
   // 📦 Quiz data — insert your full allQuizSets object here
-const allQuizSets = {
+  const allQuizSets = {
   idealPartnerSet: {
 "Emocionalna Kemija": [
     {
@@ -377,7 +418,7 @@ const allQuizSets = {
     }
   ],
 
-  tajnaPrivlacnost: [
+  "Tajna Privlacnost": [
     {
       question: "Kakav te partner potajno privlači?",
       answers: [
@@ -1033,62 +1074,82 @@ astroPovezanostSet: {
   }
 };
 
- // 🎲 Initialization logic
-function initializeQuiz() {
-  const setKeys = Object.keys(allQuizSets);
-  const selectedSetKey = setKeys[Math.floor(Math.random() * setKeys.length)];
-  quizData = allQuizSets[selectedSetKey];
+  // 🎲 Initialization logic
+  function initializeQuiz() {
+    const selectedSetKey = "idealPartnerSet";
+    quizData = allQuizSets[selectedSetKey];
 
-  themeKeys = Object.keys(quizData);
-  shuffleArray(themeKeys); // shuffle theme order
+    themeKeys = Object.keys(quizData);
+    shuffleArray(themeKeys);
 
-  themeKeys.forEach(theme => {
-    shuffleArray(quizData[theme]); // shuffle questions
-    quizData[theme].forEach(q => shuffleArray(q.answers)); // shuffle answers
-  });
+    themeKeys.forEach(theme => {
+      shuffleArray(quizData[theme]);
+      quizData[theme].forEach(q => shuffleArray(q.answers));
+    });
 
-  currentThemeIndex = 0;
-  currentQuestionIndex = 0;
-  scores = {};
-}
+    totalQuestions = themeKeys.reduce((sum, theme) => sum + quizData[theme].length, 0);
 
-// 🖼️ Render question
-function showQuestion() {
-  if (currentThemeIndex >= themeKeys.length) {
-    showResult();
-    return;
-  }
-
-  const theme = themeKeys[currentThemeIndex];
-  const questions = quizData[theme];
-
-  if (currentQuestionIndex >= questions.length) {
-    currentThemeIndex++;
+    currentThemeIndex = 0;
     currentQuestionIndex = 0;
-    showQuestion();
-    return;
+    scores = {};
   }
 
-  const q = questions[currentQuestionIndex];
-  document.getElementById("themeTitle").innerText = `Tema: ${theme.toUpperCase()}`;
-  document.getElementById("question").innerText = q.question;
+  // 🖼️ Render question
+  function showQuestion() {
+    if (currentThemeIndex >= themeKeys.length) {
+      showResult();
+      return;
+    }
 
-  const answersDiv = document.getElementById("answers");
-  answersDiv.innerHTML = "";
+    const theme = themeKeys[currentThemeIndex];
+    const questions = quizData[theme];
 
-  q.answers.forEach(a => {
-    const btn = document.createElement("button");
-    btn.innerText = a.text;
-    btn.onclick = () => {
-      scores[a.sign] = (scores[a.sign] || 0) + 1;
-      currentQuestionIndex++;
+    if (currentQuestionIndex >= questions.length) {
+      currentThemeIndex++;
+      currentQuestionIndex = 0;
       showQuestion();
-    };
-    answersDiv.appendChild(btn);
-  });
-}
+      return;
+    }
 
-// 🌌 Zodiac descriptions
+    const questionObj = questions[currentQuestionIndex];
+
+    // ✅ Calculate global progress
+    let current = 0;
+    for (let i = 0; i < currentThemeIndex; i++) {
+      current += quizData[themeKeys[i]].length;
+    }
+    current += currentQuestionIndex + 1;
+
+    // 💡 Select tip
+    let tipText;
+    if (current === totalQuestions) {
+      tipText = tips[tips.length - 1]; // WhatsApp tip
+    } else {
+      const randomIndex = Math.floor(Math.random() * (tips.length - 1));
+      tipText = tips[randomIndex];
+    }
+
+    // 🧾 Update UI
+    document.getElementById("progressBox").innerText = `🔢 ${current}/${totalQuestions} — 💡 TIP: ${tipText}`;
+    document.getElementById("themeTitle").innerText = `Tema: ${theme.toUpperCase()}`;
+    document.getElementById("question").innerText = questionObj.question;
+
+    const answersDiv = document.getElementById("answers");
+    answersDiv.innerHTML = "";
+
+    questionObj.answers.forEach(answer => {
+      const btn = document.createElement("button");
+      btn.innerText = answer.text;
+      btn.onclick = () => {
+        scores[answer.sign] = (scores[answer.sign] || 0) + 1;
+        currentQuestionIndex++;
+        showQuestion();
+      };
+      answersDiv.appendChild(btn);
+    });
+  }
+
+  // 🌌 Zodiac descriptions
 const signDescriptions = {
   Ovan: {
     emoji: "🔥",
@@ -1166,71 +1227,68 @@ const signDescriptions = {
 
 
 // 🏁 Show result
-function showResult() {
-  // Hide quiz elements
-  document.getElementById("themeTitle").style.display = "none";
-  document.getElementById("question").style.display = "none";
-  document.getElementById("answers").style.display = "none";
-  document.getElementById("extraActions").style.display = "block";
+  function showResult() {
+    document.getElementById("themeTitle").style.display = "none";
+    document.getElementById("question").style.display = "none";
+    document.getElementById("answers").style.display = "none";
+    document.getElementById("extraActions").style.display = "block";
 
-  // Calculate top sign
-  const topSign = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
-  const resultDiv = document.getElementById("result");
-  resultDiv.style.display = "block";
+    const topSign = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+    const resultDiv = document.getElementById("result");
+    resultDiv.style.display = "block";
 
-  // Inserted result logic using signDescriptions
-  const {emoji, description, traits, connection } = signDescriptions[topSign];
-resultDiv.innerText = `${emoji} Tvoj dominantni astrološki znak je: ${topSign}.\n\nTvoj idealan partner nosi energiju znaka ${topSign} — ${description}.\nPrivlače te osobine poput ${traits}, a tvoja ljubavna dinamika najbolje funkcionira s osobom koja te ${connection}.\n\n💘 Otkrij tko te čeka među zvijezdama!`;
+    const { emoji, description, traits, connection } = signDescriptions[topSign];
+    resultDiv.innerText = `${emoji} Tvoj dominantni astrološki znak je: ${topSign}.\n\nTvoj idealan partner nosi energiju znaka ${topSign} — ${description}.\nPrivlače te osobine poput ${traits}, a tvoja ljubavna dinamika najbolje funkcionira s osobom koja te ${connection}.\n\n💘 Otkrij tko te čeka među zvijezdama!`;
 
+    document.getElementById("resultActions").style.display = "flex";
+  }
 
-  // Show result actions
-  document.getElementById("resultActions").style.display = "flex";
-}
+  // 📲 WhatsApp share
+  document.getElementById("whatsappShareBtn").onclick = () => {
+    const topSign = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+    const message = `Moj dominantni astrološki znak je: ${topSign}! Saznaj svoj znak na našem kvizu 🔮`;
+    const url = "https://www.lfbuyer.com/hr/zodijak/";
+    const whatsappLink = `https://wa.me/?text=${encodeURIComponent(message + " " + url)}`;
+    window.open(whatsappLink, "_blank");
+  };
 
+  // 🔄 Restart logic
+  document.getElementById("restartBtn").onclick = () => {
+    initializeQuiz();
+    document.getElementById("result").style.display = "none";
+    document.getElementById("resultActions").style.display = "none";
+    document.getElementById("themeTitle").style.display = "block";
+    document.getElementById("question").style.display = "block";
+    document.getElementById("answers").style.display = "block";
+    document.getElementById("extraActions").style.display = "none";
+    showQuestion();
+  };
 
-// 📲 WhatsApp share
-document.getElementById("whatsappShareBtn").onclick = () => {
-  const topSign = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
-  const message = `Moj dominantni astrološki znak je: ${topSign}! Saznaj svoj znak na našem kvizu 🔮`;
-  const url = "https://www.lfbuyer.com/hr/zodijak/";
-  const whatsappLink = `https://wa.me/?text=${encodeURIComponent(message + " " + url)}`;
-  window.open(whatsappLink, "_blank");
-};
-
-// 🔄 Restart logic
-document.getElementById("restartBtn").onclick = () => {
-  initializeQuiz();
-  document.getElementById("result").style.display = "none";
-  document.getElementById("resultActions").style.display = "none";
-  document.getElementById("themeTitle").style.display = "block";
-  document.getElementById("question").style.display = "block";
-  document.getElementById("answers").style.display = "block";
-  document.getElementById("extraActions").style.display = "none";
-  showQuestion();
-};
-
-// 🚀 Start quiz
-document.addEventListener("DOMContentLoaded", () => {
-  initializeQuiz();
-  showQuestion();
-});
-
+  // 🚀 Start quiz
+  document.addEventListener("DOMContentLoaded", () => {
+    initializeQuiz();
+    showQuestion();
+  });
 </script>
-	<!-- 
-  Copyright (c) 2025 RIOGB
-  All rights reserved.
-  
-  This website and its content, including but not limited to text, images, and source code, 
-  are protected by copyright law and may not be reproduced, distributed, or transmitted 
-  in any form or by any means without the prior written permission of the copyright owner.
+<!-- 
+ Copyright(c) 2025 RIOGB j.d.o.o.
+  Sva prava pridržana.
+
+  Ova web stranica i njezin sadržaj, uključujući ali ne ograničavajući se na tekst, slike i izvorni kod, 
+  zaštićeni su autorskim pravom i ne smiju se reproducirati, distribuirati niti prenositi 
+  u bilo kojem obliku ili na bilo koji način bez prethodnog pisanog dopuštenja vlasnika autorskih prava.
 -->
 
 <footer class="site-footer">
-  <p>&copy; <span id="current-year"></span> RIOGB j.d.o.o. All rights reserved.</p>
+  <p>✨ Pokreće te tvoja kozmička znatiželja ✨</p>
+  <p>&copy; <span id="current-year"></span> RIOGB j.d.o.o. Sva prava pridržana.</p>
+  <a href="https://www.lfbuyer.com/privacy-policy/" target="_blank" rel="noopener noreferrer">
+    Pravila privatnosti
+  </a>
 </footer>
 
 <script>
-  // Auto-update the year in the footer
+  // Automatsko ažuriranje godine u podnožju
   document.getElementById('current-year').textContent = new Date().getFullYear();
 </script>
 </body>
