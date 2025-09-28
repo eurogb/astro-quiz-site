@@ -1,4 +1,14 @@
 <script>
+  document.addEventListener("DOMContentLoaded", () => {
+  const header = document.createElement("header");
+  header.innerHTML = `<h1>Your Daily Horoscope</h1>`;
+  document.body.insertBefore(header, document.body.firstChild);
+
+  const footer = document.createElement("footer");
+  footer.innerHTML = `<p>&copy; ${new Date().getFullYear()} RIOGB j.d.o.o. All rights reserved.</p>`;
+  document.body.appendChild(footer);
+});
+
   // 🌐 Detect language from URL
   const path = window.location.pathname;
   const lang = path.includes('/hr/') ? 'hr' : 'en';
